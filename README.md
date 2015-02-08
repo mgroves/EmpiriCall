@@ -24,9 +24,11 @@ If we know the answers to these questions, then we can use it to make decisions 
 * Can we drop a feature?
 * How can we price/package features?
 * Where can we focus our coding efforts to have the most impact on actual customers?
-* What do our customers actually do with our software?
+* How do we prioritize our backlog?
 
-I know that EmpiriCall can't be the first tool to try and answer these questions and inform these decision, but I believe it approaches the problem in a way that combines the technical knowledge of the developers and the business knowledge of the sales/analyst. The result is: empyrical evidence.
+I know that EmpiriCall can't be the first tool to try and answer these questions and inform these decision, but I believe it approaches the problem in a way that combines the technical knowledge of the developers and the business knowledge of the sales/analyst.
+
+The result is: **empirical evidence**.
 
 # I don't want to use db4o or SQL+Entity Framework
 
