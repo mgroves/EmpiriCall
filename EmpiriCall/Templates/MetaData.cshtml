@@ -1,0 +1,31 @@
+﻿@model EmpiriCall.Actions.ViewModels.MetaDataView
+
+<h1>Meta Data</h1>
+
+@if (Model.Meta == null)
+{
+    <p>No meta data exists yet.</p>
+}
+else
+{
+    <p>Meta data last updated: @Model.Meta.LastUpdated</p>
+    <table border="1">
+        <tr>
+            <td>Controller Name</td>
+            <td>Action Name</td>
+            <td>Parameter types</td>
+            <td>Parameter names</td>
+            <td>Feature</td>
+        </tr>
+        @foreach (var actionInfo in @Model.Meta.ActionInfo.OrderBy(x => x.ControllerName).ThenBy(x => x.ActionName))
+        {
+            <tr>
+                <td>@actionInfo.ControllerName</td>
+                <td>@actionInfo.ActionName</td>
+                <td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName))</td>
+                <td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterName))</td>
+                <td>@actionInfo.Feature</td>
+            </tr>
+        }
+    </table>
+}

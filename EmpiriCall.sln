@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall", "EmpiriCall\EmpiriCall.csproj", "{267ED206-0B5B-4862-BBA3-D951E760EB7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data", "EmpiriCall.Data\EmpiriCall.Data.csproj", "{BFE757E1-07E3-40F1-94FE-9662C2E86383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.Db4o", "EmpiriCall.Data.Db4o\EmpiriCall.Data.Db4o.csproj", "{5C838098-0195-4BF3-970B-C94717B946C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.SQLServer", "EmpiriCall.Data.SQLServer\EmpiriCall.Data.SQLServer.csproj", "{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3684C39A-293D-4B8C-AE8E-E4B82E19BF4B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMvcApp", "ExampleMvcApp\ExampleMvcApp.csproj", "{5A3DC234-35E1-4588-9BC7-053134FF8438}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{267ED206-0B5B-4862-BBA3-D951E760EB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{267ED206-0B5B-4862-BBA3-D951E760EB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{267ED206-0B5B-4862-BBA3-D951E760EB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{267ED206-0B5B-4862-BBA3-D951E760EB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C838098-0195-4BF3-970B-C94717B946C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C838098-0195-4BF3-970B-C94717B946C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C838098-0195-4BF3-970B-C94717B946C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C838098-0195-4BF3-970B-C94717B946C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

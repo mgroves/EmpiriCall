@@ -1,0 +1,25 @@
+﻿@model EmpiriCall.Actions.ViewModels.CallDataView
+
+<h1>Call Data</h1>
+
+<table border="1">
+    <tr>
+        <td>Controller Name</td>
+        <td>Action Name</td>
+        <td>Parameter Types</td>
+        <td>Parameter Names</td>
+        <td># Calls</td>
+        <td>Feature</td>
+    </tr>
+    @foreach (var detailRecord in Model.MetaData.ActionInfo)
+    {
+        <tr>
+            <td>@detailRecord.ControllerName</td>
+            <td>@detailRecord.ActionName</td>
+            <td>@string.Join(",", @detailRecord.ParameterInfo.Select(p => p.ParameterTypeFullName))</td>
+            <td>@string.Join(",", @detailRecord.ParameterInfo.Select(p => p.ParameterName))</td>
+            <td>@(detailRecord.CallRecords == null ? 0 : detailRecord.CallRecords.Count)</td>
+            <td>@detailRecord.Feature</td>
+        </tr>
+    }
+</table>
