@@ -143,3 +143,17 @@ QueryRawDetail
 QueryGetMetaData
 CommandMapFeature
 ```
+
+# License
+
+EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer are all licensed under the MIT License: http://choosealicense.com/licenses/mit/
+
+EmpiriCall.Data.Db4o is licensed under the GPL license (since it uses db4o).
+
+# TODO
+
+* Finish this README
+* Move stuff into a wiki
+* Ability to add/edit feature mapping in the UI.
+* Better looking console/reports.
+* More reports for username, custom values, date/time.
