@@ -1,0 +1,15 @@
+﻿<html>
+    <head>
+        <title>Other -> Bar</title>
+    </head>
+    <body>
+        <p>Hello, world!</p>
+        
+        @if (ViewData.ContainsKey("id"))
+        {
+            <p>Value of "a": @ViewData["id"]</p>
+        }
+        
+        @Html.Partial("_links")
+    </body>
+</html>

@@ -1,0 +1,19 @@
+﻿@{ var guid = Guid.NewGuid();}
+<p>Links to other controllers/actions:</p>
+<ul>
+    <li><a href="/Home/Index">/Home/Index</a></li>
+    <li><a href="/Home/Foo?a=1">/Home/Foo?a=1</a></li>
+    <li><a href="/Home/Foo?a=1&b=2">/Home/Foo?a=1&b=2</a></li>
+    <li><a href="/Other/Bar/@guid">/Home/Foo/@guid</a></li>
+</ul>
+
+<p>POST a form to /Other/Baz:</p>
+<form action="/Other/Baz" method="POST">
+    <p>
+        Keyword:
+        <input type="text" name="keyword" placeholder="Type in some keyword here" />
+    </p>
+    <input type="submit" value="Submit" />
+</form>
+
+<p><a href="/EmpiriCall.axd">EmpiriCall Console</a></p>

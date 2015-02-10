@@ -45,7 +45,7 @@ namespace EmpiriCall.Data.SQLServer.CommandHandlers
                     var controllers = assembly.GetTypes()
                         .Where(t => t.IsSubclassOf(typeof(Controller)))
                         .ToList();
-                    meta.ActionInfo.AddRange(MapActionInfo(controllers));
+                    meta.ActionInfo = MapActionInfo(controllers).ToList();
                 }
                 catch
                 {

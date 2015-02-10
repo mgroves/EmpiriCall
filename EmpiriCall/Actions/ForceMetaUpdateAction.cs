@@ -15,7 +15,7 @@ namespace EmpiriCall.Actions
 
         public void Execute(HttpContext context)
         {
-            _processor.Execute(new CommandMetaDataUpdate());
+            _processor.Execute(new CommandMetaDataUpdate { ForceUpdate = true});
 
             context.Response.Redirect("/EmpiriCall.axd");
         }

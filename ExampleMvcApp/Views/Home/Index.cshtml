@@ -1,8 +1,20 @@
 ﻿<html>
     <head>
-        
+        <title>Home -> Index</title>
     </head>
     <body>
         <p>Hello, world!</p>
+        
+        @if (ViewData.ContainsKey("a"))
+        {
+            <p>Value of "a": @ViewData["a"]</p>
+        }
+        
+        @if (ViewData.ContainsKey("b"))
+        {
+            <p>Value of "a": @ViewData["b"]</p>
+        }
+        
+        @Html.Partial("_links")
     </body>
 </html>

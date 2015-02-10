@@ -8,5 +8,12 @@ namespace ExampleMvcApp.Controllers
         {
             return View();
         }
+
+        public ActionResult Foo(int a, int? b)
+        {
+            ViewData["a"] = a;
+            ViewData["b"] = b.HasValue ? b.ToString() : "N/A";
+            return View();
+        }
     }
 }
