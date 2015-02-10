@@ -151,6 +151,7 @@ EmpiriCall.Data.Db4o is licensed under the GPL license (since it uses db4o).
 
 # TODO
 
+* Meta data management / versioning
 * Finish this README
 * Move stuff into a wiki
 * Ability to add/edit feature mapping in the UI.
