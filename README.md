@@ -19,7 +19,7 @@ There are only 4 easy steps to get EmpiriCall running right now.
 
 3. EmpiriCall is an MVC ActionFilter. Somewhere in your application start (perhaps Global.ascx's Application_Start'), add it as a global filter:
 ```
-GlobalFilters.Filters.Add(new EmpiriCallActionFilter(analyticConfig: config));
+GlobalFilters.Filters.Add(new EmpiriCallActionFilter());
 ```
 
 4. Tell EmpiriCall which data provider you're using. This can probably go in Global.ascx too (perhaps Application_BeginRequest). Here are the ways to use the two data providers that I've created so far:
@@ -30,7 +30,6 @@ GlobalFilters.Filters.Add(new EmpiriCallActionFilter(analyticConfig: config));
 EmpiriCallConfig.LoadDbContainer(new Db4oResolver("a db4o filename"));
 
 // SQL Server (with Entity Framework)
-// You'll need to add Entity Framework to your web project to use this.
 EmpiriCallConfig.LoadDbContainer(new SqlServerResolver([a DbConnection));
 ```
 
