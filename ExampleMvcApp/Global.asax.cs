@@ -23,6 +23,8 @@ namespace ExampleMvcApp
         {
             var dbConnection = new SqlConnection("server=(local);uid=;pwd=;Trusted_Connection=yes;database=EmpiriCallDemoDb");
             EmpiriCallConfig.LoadDbContainer(new SqlServerResolver(dbConnection));
+
+            EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());
         }
 
         protected void Application_EndRequest()
