@@ -3,7 +3,7 @@ using EmpiriCall.Data.Data;
 
 namespace EmpiriCall.Data.SQLServer.Entities
 {
-    public class ActionInfoMap : EntityTypeConfiguration<ActionInfo>
+    internal class ActionInfoMap : EntityTypeConfiguration<ActionInfo>
     {
         public ActionInfoMap()
         {

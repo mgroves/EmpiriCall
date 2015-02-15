@@ -4,7 +4,7 @@ using EmpiriCall.Data.Data;
 
 namespace EmpiriCall.Data.SQLServer.Entities
 {
-    public class CustomValueMap : EntityTypeConfiguration<CustomValue>
+    internal class CustomValueMap : EntityTypeConfiguration<CustomValue>
     {
         public CustomValueMap()
         {

@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Data.Entity;
 using EmpiriCall.Data.Data;
 using EmpiriCall.Data.SQLServer.Entities;
@@ -9,8 +8,6 @@ namespace EmpiriCall.Data.SQLServer
     public class EmpiriCallDbContext : DbContext
     {
         public DbSet<MetaData> MetaData { get; set; }
-        public DbSet<ActionInfo> ActionInfo { get; set; }
-        public DbSet<ParameterBasicInfo> ParameterBasicInfo { get; set; }
         public DbSet<DetailRecord> DetailRecord { get; set; }
 
         public EmpiriCallDbContext(DbConnection connection): base(connection, false)

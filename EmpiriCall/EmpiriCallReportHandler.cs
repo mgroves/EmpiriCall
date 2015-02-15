@@ -3,7 +3,7 @@ using EmpiriCall.Actions;
 
 namespace EmpiriCall
 {
-    public class EmpiriCallReportHandler : IHttpHandler
+    internal class EmpiriCallReportHandler : IHttpHandler
     {
         public void ProcessRequest(HttpContext context)
         {

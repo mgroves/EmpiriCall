@@ -4,7 +4,7 @@ using EmpiriCall.Data.DataAccess.CommandQueries;
 
 namespace EmpiriCall.Actions
 {
-    public class AddMetaDataVersionAction : IEmpiriCallAction
+    internal class AddMetaDataVersionAction : IEmpiriCallAction
     {
         readonly IProcessor _processor;
 

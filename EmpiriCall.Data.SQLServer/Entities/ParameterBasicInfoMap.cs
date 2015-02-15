@@ -3,7 +3,7 @@ using EmpiriCall.Data.Data;
 
 namespace EmpiriCall.Data.SQLServer.Entities
 {
-    public class ParameterBasicInfoMap : EntityTypeConfiguration<ParameterBasicInfo>
+    internal class ParameterBasicInfoMap : EntityTypeConfiguration<ParameterBasicInfo>
     {
         public ParameterBasicInfoMap()
         {

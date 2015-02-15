@@ -2,7 +2,7 @@
 
 namespace EmpiriCall
 {
-    public static class RazorExtensions
+    internal static class RazorExtensions
     {
         public static string View<T>(this IRazorEngineService @this, string templateName, T viewModel)
         {

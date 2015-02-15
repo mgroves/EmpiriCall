@@ -3,7 +3,7 @@ using EmpiriCall.Services;
 
 namespace EmpiriCall
 {
-    public class EmpiriCallActionFilter : ActionFilterAttribute
+    public sealed class EmpiriCallActionFilter : ActionFilterAttribute
     {
         readonly IAnalyticEngine _analyticEngine;
         readonly AnalyticEngineConfig _config;

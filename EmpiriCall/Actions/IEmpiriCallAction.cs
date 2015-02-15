@@ -2,7 +2,7 @@
 
 namespace EmpiriCall.Actions
 {
-    public interface IEmpiriCallAction
+    internal interface IEmpiriCallAction
     {
         void Execute(HttpContext context);
     }

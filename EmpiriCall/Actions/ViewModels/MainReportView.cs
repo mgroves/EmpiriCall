@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace EmpiriCall.Actions.ViewModels
+﻿namespace EmpiriCall.Actions.ViewModels
 {
-    public class MainReportView
+    public class MainMenuView
     {
         public string LastMetaDataUpdateDate { get; set; }
     }

@@ -6,7 +6,7 @@ using RazorEngine.Templating;
 
 namespace EmpiriCall.Actions
 {
-    public class ShowMainMenuAction : IEmpiriCallAction
+    internal class ShowMainMenuAction : IEmpiriCallAction
     {
         readonly IRazorEngineService _razor;
         readonly Processor _processor;
@@ -19,7 +19,7 @@ namespace EmpiriCall.Actions
 
         public void Execute(HttpContext context)
         {
-            var viewModel = new MainReportView();
+            var viewModel = new MainMenuView();
             var metaData = _processor.Query(new QueryGetLatestMetaData());
             viewModel.LastMetaDataUpdateDate = metaData == null ? "Never" : metaData.LastUpdated + " (Version " + metaData.Version + ")";
             context.Response.Write(_razor.View("MainMenu", viewModel));

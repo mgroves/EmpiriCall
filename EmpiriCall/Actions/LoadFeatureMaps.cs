@@ -2,7 +2,7 @@
 
 namespace EmpiriCall.Actions
 {
-    public class LoadFeatureMaps : IEmpiriCallAction
+    internal class LoadFeatureMaps : IEmpiriCallAction
     {
         public void Execute(HttpContext context)
         {

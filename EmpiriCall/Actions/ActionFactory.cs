@@ -7,7 +7,7 @@ using RazorEngine.Templating;
 
 namespace EmpiriCall.Actions
 {
-    public static class ActionFactory
+    internal static class ActionFactory
     {
         public static IEmpiriCallAction GetCommand(string commandString, HttpContext context)
         {

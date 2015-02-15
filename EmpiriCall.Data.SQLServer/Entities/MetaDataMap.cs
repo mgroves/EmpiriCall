@@ -3,7 +3,7 @@ using EmpiriCall.Data.Data;
 
 namespace EmpiriCall.Data.SQLServer.Entities
 {
-    public class MetaDataMap : EntityTypeConfiguration<MetaData>
+    internal class MetaDataMap : EntityTypeConfiguration<MetaData>
     {
         public MetaDataMap()
         {

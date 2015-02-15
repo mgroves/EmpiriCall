@@ -8,7 +8,7 @@ using EmpiriCall.Data.DataAccess.CommandQueries;
 
 namespace EmpiriCall.Services
 {
-    public class DefaultAnalyticEngine : IAnalyticEngine
+    internal class DefaultAnalyticEngine : IAnalyticEngine
     {
         public void Execute(ActionExecutingContext filterContext, AnalyticEngineConfig config)
         {

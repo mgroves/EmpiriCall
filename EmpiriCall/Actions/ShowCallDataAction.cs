@@ -6,7 +6,7 @@ using RazorEngine.Templating;
 
 namespace EmpiriCall.Actions
 {
-    public class ShowCallDataAction : IEmpiriCallAction
+    internal class ShowCallDataAction : IEmpiriCallAction
     {
         readonly IRazorEngineService _razor;
         readonly IProcessor _processor;

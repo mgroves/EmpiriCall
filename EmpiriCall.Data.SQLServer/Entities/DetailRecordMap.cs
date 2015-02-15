@@ -4,7 +4,7 @@ using EmpiriCall.Data.Data;
 
 namespace EmpiriCall.Data.SQLServer.Entities
 {
-    public class DetailRecordMap : EntityTypeConfiguration<DetailRecord>
+    internal class DetailRecordMap : EntityTypeConfiguration<DetailRecord>
     {
         public DetailRecordMap()
         {

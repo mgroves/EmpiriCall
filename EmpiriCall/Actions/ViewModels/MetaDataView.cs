@@ -1,5 +1,4 @@
-﻿using EmpiriCall.Data;
-using EmpiriCall.Data.Data;
+﻿using EmpiriCall.Data.Data;
 
 namespace EmpiriCall.Actions.ViewModels
 {
