@@ -8,6 +8,8 @@ namespace ExampleMvcApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        SqlConnection _dbConnection;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -17,19 +19,17 @@ namespace ExampleMvcApp
             GlobalFilters.Filters.Add(new EmpiriCallActionFilter());
         }
 
-
-
         protected void Application_BeginRequest()
         {
-            var dbConnection = new SqlConnection("server=(local);uid=;pwd=;Trusted_Connection=yes;database=EmpiriCallDemoDb");
-            EmpiriCallConfig.LoadDbContainer(new SqlServerResolver(dbConnection));
-
+            _dbConnection = new SqlConnection("server=(local);uid=;pwd=;Trusted_Connection=yes;database=EmpiriCallDemoDb");
+            EmpiriCallConfig.LoadDbContainer(new SqlServerResolver(_dbConnection));
             EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());
         }
 
         protected void Application_EndRequest()
         {
-            
+            _dbConnection.Close();
+            _dbConnection.Dispose();
         }
     }
 }
