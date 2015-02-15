@@ -94,6 +94,7 @@
     <EmbeddedResource Include="Templates\RawDetail.cshtml" />
     <EmbeddedResource Include="Templates\MetaData.cshtml" />
     <EmbeddedResource Include="Templates\CallData.cshtml" />
+    <EmbeddedResource Include="Templates\_layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmpiriCall.Data\EmpiriCall.Data.csproj">

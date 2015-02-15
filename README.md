@@ -89,15 +89,10 @@ Note that you have to specify arguments in those lambdas, but those argument val
 
 # Configuration
 
-TODO
+The ```EmpiriCallActionFilter``` has two optional parameters in its constructor:
 
-## User name
-
-TODO
-
-## Custom values
-
-TODO
+* analyticEngine - an implementation of IAnalyticEngine. A default engine is used, but you could specify your own here, if you'd like.
+* analyticConfig - configuration options. Currently, you can specify a GetUserName Func and GetCustomValues Func. GetUserName will be called whenever a detail record is saved, to save the current user into a username field. GetCustomValues is also called, and stores any number of arbitrary values for each detail record. If you don't specify analyticConfig, then neither of these will happen (no default behavior). If you specify analyticConfig, you can specify GetUserName/GetCustomValues (either one or both).
 
 # Why?
 
@@ -131,22 +126,24 @@ Create an implementation of IDependencyResolver that will return the various DB 
 
 Create implementations of the various queries/commands and handlers. There are only 5 at the time of this writing:
 ```
-CommandMetaDataUpdate
-CommandAddRecord
-QueryRawDetail
-QueryGetMetaData
-CommandMapFeature
+CommandAddRecord (called by the ActionFilter)
+CommandCreateMetaDataIfNecessary (called by the ActionFilter)
+CommandAddNewMetaDataVersion (called by CommandCreateMetaDataIfNecessary)
+CommandMapFeature (used on EmpiriCall console)
+QueryGetLatestMetaData (used on EmpiriCall console)
+QueryRawDetail (used on EmpiriCall console)
 ```
+
+I know this isn't a lot to go on, but I will try to create more docs on this later.
 
 # License
 
 EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer are all licensed under the MIT License: http://choosealicense.com/licenses/mit/
 
-# TODO
+# Stuff that still needs done
 
-* Meta data management / versioning
-* Finish this README
-* Move stuff into a wiki
+* Move these docs into a wiki, flesh them out a bit more.
 * Ability to add/edit feature mapping in the UI.
 * Better looking console/reports.
 * More reports for username, custom values, date/time.
+* Performance testing / adjustments: maybe batching? maybe async?
