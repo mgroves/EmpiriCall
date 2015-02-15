@@ -18,7 +18,7 @@ namespace EmpiriCall.Data.Db4o.QueryHandlers
         public MetaData Handle(QueryGetMetaData args)
         {
             using (var db = Db4oEmbedded.OpenFile(_db4oFilePath))
-                return db.Query<MetaData>().FirstOrDefault();
+                return db.Query<MetaData>().OrderByDescending(m => m.Version).FirstOrDefault();
         }
     }
 }

@@ -23,8 +23,8 @@ namespace EmpiriCall.Data.Db4o
             // TODO: there needs to be a better way of doing this
             // but it's a pretty small and flat dependency graph
             // so I'm not worried about it yet
-            if (serviceType == typeof (ICommandHandler<CommandMetaDataUpdate>))
-                return new CommandHandlerMetaDataUpdate(_db4oFilePath);
+            if (serviceType == typeof (ICommandHandler<CommandAddNewMetaDataVersion>))
+                return new CommandHandlerAddNewMetaDataVersion(_db4oFilePath);
             else if (serviceType == typeof (ICommandHandler<CommandAddRecord>))
                 return new CommandHandlerAddRecord(_db4oFilePath);
             else if (serviceType == typeof (IQueryHandler<QueryRawDetail, List<DetailRecord>>))
@@ -33,6 +33,8 @@ namespace EmpiriCall.Data.Db4o
                 return new QueryHandlerGetMetaData(_db4oFilePath);
             else if (serviceType == typeof (ICommandHandler<CommandMapFeature>))
                 return new CommandHandlerMapFeature(_db4oFilePath);
+            else if (serviceType == typeof (ICommandHandler<CommandCreateMetaDataIfNecessary>))
+                return new CommandHandlerCreateMetaDataIfNecessary(_db4oFilePath);
             else
                 throw new Exception("I can't find a QueryHandler that returns: " + serviceType.FullName);
         }

@@ -66,8 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\CommandHandlerAddRecord.cs" />
+    <Compile Include="CommandHandlers\CommandHandlerCreateMetaDataIfNecessary.cs" />
     <Compile Include="CommandHandlers\CommandHandlerMapFeature.cs" />
-    <Compile Include="CommandHandlers\CommandHandlerMetaDataUpdate.cs" />
+    <Compile Include="CommandHandlers\CommandHandlerAddNewMetaDataVersion.cs" />
     <Compile Include="Db4oResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\QueryHandlerGetMetaData.cs" />

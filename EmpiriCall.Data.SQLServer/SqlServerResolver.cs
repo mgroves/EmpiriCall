@@ -24,8 +24,8 @@ namespace EmpiriCall.Data.SQLServer
             // TODO: there needs to be a better way of doing this
             // but it's a pretty small and flat dependency graph
             // so I'm not worried about it yet
-            if (serviceType == typeof(ICommandHandler<CommandMetaDataUpdate>))
-                return new CommandHandlerMetaDataUpdate(_context);
+            if (serviceType == typeof(ICommandHandler<CommandAddNewMetaDataVersion>))
+                return new CommandHandlerAddNewMetaDataVersion(_context);
             else if (serviceType == typeof(ICommandHandler<CommandAddRecord>))
                 return new CommandHandlerAddRecord(_context);
             else if (serviceType == typeof(IQueryHandler<QueryRawDetail, List<DetailRecord>>))
@@ -34,6 +34,8 @@ namespace EmpiriCall.Data.SQLServer
                 return new QueryHandlerGetMetaData(_context);
             else if (serviceType == typeof(ICommandHandler<CommandMapFeature>))
                 return new CommandHandlerMapFeature(_context);
+            else if (serviceType == typeof(ICommandHandler<CommandCreateMetaDataIfNecessary>))
+                return new CommandHandlerCreateMetaDataIfNecessary(_context);
             else
                 throw new Exception("I can't find a QueryHandler that returns: " + serviceType.FullName);
         }

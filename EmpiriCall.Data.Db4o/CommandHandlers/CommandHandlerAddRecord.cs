@@ -22,9 +22,8 @@ namespace EmpiriCall.Data.Db4o.CommandHandlers
             config.Common.UpdateDepth = 5;
             using (var db = Db4oEmbedded.OpenFile(config, _db4oFilePath))
             {
-                var meta = db.Query<MetaData>();
-
-                var action = meta
+                var action = db.Query<MetaData>()
+                    .OrderByDescending(m => m.Version)
                     .First()
                     .ActionInfo
                     .Where(a => a.ActionName == command.ActionName)

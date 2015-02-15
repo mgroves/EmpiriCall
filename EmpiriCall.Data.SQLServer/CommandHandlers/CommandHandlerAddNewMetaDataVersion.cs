@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
-using Db4objects.Db4o;
 using EmpiriCall.Data.Data;
 using EmpiriCall.Data.DataAccess;
 using EmpiriCall.Data.DataAccess.CommandQueries;
 
-namespace EmpiriCall.Data.Db4o.CommandHandlers
+namespace EmpiriCall.Data.SQLServer.CommandHandlers
 {
-    public class CommandHandlerMetaDataUpdate : ICommandHandler<CommandMetaDataUpdate>
+    public class CommandHandlerAddNewMetaDataVersion : ICommandHandler<CommandAddNewMetaDataVersion>
     {
-        readonly string _db4oFilePath;
+        readonly EmpiriCallDbContext _context;
 
-        public CommandHandlerMetaDataUpdate(string db4oFilePath)
+        public CommandHandlerAddNewMetaDataVersion(EmpiriCallDbContext context)
         {
-            _db4oFilePath = db4oFilePath;
+            _context = context;
         }
 
-        public void Handle(CommandMetaDataUpdate command)
+        public void Handle(CommandAddNewMetaDataVersion command)
         {
-            using (var db = Db4oEmbedded.OpenFile(_db4oFilePath))
-            {
-                var meta = db.Query<MetaData>().SingleOrDefault();
+            var latestMeta = _context.MetaData.OrderByDescending(m => m.Version).FirstOrDefault();
 
-                if (command.ForceUpdate || meta == null)
-                {
-                    meta = meta ?? new MetaData();
-                    UpdateMeta(meta);
-                    db.Store(meta);
-                }
-            }
+            var version = 1;
+            if (latestMeta != null)
+                version = latestMeta.Version + 1;
+
+            var meta = new MetaData {Version = version};
+
+            UpdateMeta(meta);
+            _context.MetaData.Add(meta);
+            _context.SaveChanges();
         }
 
         void UpdateMeta(MetaData meta)

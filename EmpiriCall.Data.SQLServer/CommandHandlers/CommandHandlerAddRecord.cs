@@ -17,8 +17,11 @@ namespace EmpiriCall.Data.SQLServer.CommandHandlers
 
         public void Handle(CommandAddRecord command)
         {
-            var action = _context.MetaData.First()
-                    .ActionInfo
+            var metaData = _context.MetaData
+                    .OrderByDescending(m => m.Version)
+                    .First();
+
+            var action = metaData.ActionInfo
                     .Where(a => a.ActionName == command.ActionName)
                     .Where(a => a.ControllerName == command.ControllerName)
                     .Where(a => ParameterBasicInfo.AreTheSame(command.ParameterInfo, a.ParameterInfo))

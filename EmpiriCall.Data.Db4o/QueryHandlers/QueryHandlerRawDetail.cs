@@ -19,7 +19,12 @@ namespace EmpiriCall.Data.Db4o.QueryHandlers
         public List<DetailRecord> Handle(QueryRawDetail args)
         {
             using (var db = Db4oEmbedded.OpenFile(_db4oFilePath))
-                return db.Query<MetaData>().First().ActionInfo.SelectMany(x => x.CallRecords).ToList();
+                return db.Query<MetaData>()
+                    .OrderByDescending(m => m.Version)
+                    .First()
+                    .ActionInfo
+                    .SelectMany(x => x.CallRecords)
+                    .ToList();
         }
     }
 }

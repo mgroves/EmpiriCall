@@ -22,11 +22,13 @@ namespace EmpiriCall.Data.Db4o.CommandHandlers
             config.Common.UpdateDepth = 5;
             using (var db = Db4oEmbedded.OpenFile(config, _db4oFilename))
             {
-                var meta = db.Query<MetaData>().SingleOrDefault();
+                var meta = db.Query<MetaData>().OrderByDescending(m => m.Version).FirstOrDefault();
                 if (meta == null)
                     throw new Exception("Load the meta data first!");
             
-                var actionInfo = db.Query<MetaData>().Single().ActionInfo
+                var actionInfo = db.Query<MetaData>().OrderByDescending(m => m.Version)
+                    .First()
+                    .ActionInfo
                     .Where(a => a.ControllerName == command.ControllerName)
                     .Where(a => a.ActionName == command.ActionName)
                     .Where(a => ParameterBasicInfo.AreTheSame(a.ParameterInfo, command.ParameterBasicInfos))

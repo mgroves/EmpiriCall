@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
+using Db4objects.Db4o;
 using EmpiriCall.Data.Data;
 using EmpiriCall.Data.DataAccess;
 using EmpiriCall.Data.DataAccess.CommandQueries;
 
-namespace EmpiriCall.Data.SQLServer.CommandHandlers
+namespace EmpiriCall.Data.Db4o.CommandHandlers
 {
-    public class CommandHandlerMetaDataUpdate : ICommandHandler<CommandMetaDataUpdate>
+    public class CommandHandlerAddNewMetaDataVersion : ICommandHandler<CommandAddNewMetaDataVersion>
     {
-        readonly EmpiriCallDbContext _context;
+        readonly string _db4oFilePath;
 
-        public CommandHandlerMetaDataUpdate(EmpiriCallDbContext context)
+        public CommandHandlerAddNewMetaDataVersion(string db4oFilePath)
         {
-            _context = context;
+            _db4oFilePath = db4oFilePath;
         }
 
-        public void Handle(CommandMetaDataUpdate command)
+        public void Handle(CommandAddNewMetaDataVersion command)
         {
-            var meta = GetMetaData();
-
-            if (command.ForceUpdate || meta == null)
+            using (var db = Db4oEmbedded.OpenFile(_db4oFilePath))
             {
-                meta = meta ?? new MetaData();
+                var latestMeta = db.Query<MetaData>().OrderByDescending(m => m.Version).FirstOrDefault();
+
+                var version = 1;
+                if (latestMeta != null)
+                    version = latestMeta.Version + 1;
+
+                var meta = new MetaData {Version = version};
                 UpdateMeta(meta);
-                if (meta.Id == default(int))
-                    _context.MetaData.Add(meta);
-                _context.SaveChanges();
+                db.Store(meta);
             }
         }
 
@@ -45,7 +48,7 @@ namespace EmpiriCall.Data.SQLServer.CommandHandlers
                     var controllers = assembly.GetTypes()
                         .Where(t => t.IsSubclassOf(typeof(Controller)))
                         .ToList();
-                    meta.ActionInfo = MapActionInfo(controllers).ToList();
+                    meta.ActionInfo.AddRange(MapActionInfo(controllers));
                 }
                 catch
                 {
@@ -55,11 +58,6 @@ namespace EmpiriCall.Data.SQLServer.CommandHandlers
                     // that I'm not interested in checking out anyway!
                 }
             }
-        }
-
-        MetaData GetMetaData()
-        {
-            return _context.MetaData.FirstOrDefault();
         }
 
         IEnumerable<ActionInfo> MapActionInfo(List<Type> controllers)

@@ -17,11 +17,14 @@ namespace EmpiriCall.Data.SQLServer.CommandHandlers
 
         public void Handle(CommandMapFeature command)
         {
-            var meta = _context.MetaData.SingleOrDefault();
+            var meta = _context.MetaData
+                .OrderByDescending(m => m.Version)
+                .FirstOrDefault();
             if (meta == null)
                 throw new Exception("Load the meta data first!");
             
-            var actionInfo = meta.ActionInfo
+            var actionInfo = meta
+                .ActionInfo
                 .Where(a => a.ControllerName == command.ControllerName)
                 .Where(a => a.ActionName == command.ActionName)
                 .Where(a => ParameterBasicInfo.AreTheSame(a.ParameterInfo, command.ParameterBasicInfos))

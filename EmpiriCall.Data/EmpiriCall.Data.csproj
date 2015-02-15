@@ -61,7 +61,8 @@
   <ItemGroup>
     <Compile Include="DataAccess\CommandQueries\CommandAddRecord.cs" />
     <Compile Include="DataAccess\CommandQueries\CommandMapFeature.cs" />
-    <Compile Include="DataAccess\CommandQueries\CommandMetaDataUpdate.cs" />
+    <Compile Include="DataAccess\CommandQueries\CommandAddNewMetaDataVersion.cs" />
+    <Compile Include="DataAccess\CommandQueries\CommandCreateMetaDataIfNecessary.cs" />
     <Compile Include="DataAccess\CommandQueries\QueryGetMetaData.cs" />
     <Compile Include="DataAccess\CommandQueries\QueryRawDetail.cs" />
     <Compile Include="DataAccess\ICommand.cs" />

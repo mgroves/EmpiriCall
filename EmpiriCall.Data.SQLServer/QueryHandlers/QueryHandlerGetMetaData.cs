@@ -16,7 +16,7 @@ namespace EmpiriCall.Data.SQLServer.QueryHandlers
 
         public MetaData Handle(QueryGetMetaData args)
         {
-            return _context.MetaData.SingleOrDefault();
+            return _context.MetaData.OrderByDescending(m => m.Version).FirstOrDefault();
         }
     }
 }

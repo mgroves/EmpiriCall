@@ -14,7 +14,7 @@ namespace EmpiriCall.Services
         {
             // update meta data if necessary
             var queryProcessor = new Processor(EmpiriCallConfig.Resolver);
-            queryProcessor.Execute(new CommandMetaDataUpdate { ForceUpdate = false});
+            queryProcessor.Execute(new CommandCreateMetaDataIfNecessary());
 
             queryProcessor.Execute(ConstructDetail(filterContext, config));
         }

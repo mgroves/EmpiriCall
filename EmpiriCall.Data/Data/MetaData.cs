@@ -8,5 +8,6 @@ namespace EmpiriCall.Data.Data
         public int Id { get; set; }
         public DateTime LastUpdated { get; set; }
         public virtual List<ActionInfo> ActionInfo { get; set; }
+        public int Version { get; set; }
     }
 }
