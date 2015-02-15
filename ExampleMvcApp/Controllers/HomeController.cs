@@ -13,7 +13,7 @@ namespace ExampleMvcApp.Controllers
         {
             ViewData["a"] = a;
             ViewData["b"] = b.HasValue ? b.ToString() : "N/A";
-            return View();
+            return View("Index");
         }
     }
 }
