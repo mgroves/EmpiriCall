@@ -30,8 +30,8 @@ namespace EmpiriCall.Data.SQLServer
                 return new CommandHandlerAddRecord(_context);
             else if (serviceType == typeof(IQueryHandler<QueryRawDetail, List<DetailRecord>>))
                 return new QueryHandlerRawDetail(_context);
-            else if (serviceType == typeof(IQueryHandler<QueryGetMetaData, MetaData>))
-                return new QueryHandlerGetMetaData(_context);
+            else if (serviceType == typeof(IQueryHandler<QueryGetLatestMetaData, MetaData>))
+                return new QueryHandlerGetLatestMetaData(_context);
             else if (serviceType == typeof(ICommandHandler<CommandMapFeature>))
                 return new CommandHandlerMapFeature(_context);
             else if (serviceType == typeof(ICommandHandler<CommandCreateMetaDataIfNecessary>))

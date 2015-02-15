@@ -5,16 +5,16 @@ using EmpiriCall.Data.DataAccess.CommandQueries;
 
 namespace EmpiriCall.Data.SQLServer.QueryHandlers
 {
-    public class QueryHandlerGetMetaData : IQueryHandler<QueryGetMetaData, MetaData>
+    public class QueryHandlerGetLatestMetaData : IQueryHandler<QueryGetLatestMetaData, MetaData>
     {
         readonly EmpiriCallDbContext _context;
 
-        public QueryHandlerGetMetaData(EmpiriCallDbContext context)
+        public QueryHandlerGetLatestMetaData(EmpiriCallDbContext context)
         {
             _context = context;
         }
 
-        public MetaData Handle(QueryGetMetaData args)
+        public MetaData Handle(QueryGetLatestMetaData args)
         {
             return _context.MetaData.OrderByDescending(m => m.Version).FirstOrDefault();
         }

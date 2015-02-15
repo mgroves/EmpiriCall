@@ -19,14 +19,14 @@ namespace EmpiriCall.Actions
                 switch (commandString)
                 {
                     case "rawdetail": return new ShowRawDetailAction(razor, processor);
-                    case "forcemetaupdate": return new ForceMetaUpdateAction(processor);
+                    case "addmetaversion": return new AddMetaDataVersionAction(processor);
                     case "showmetadata": return new ShowMetaDataAction(razor, processor);
                     case "showcalldata": return new ShowCallDataAction(razor, processor);
                     case "loadfeature": return new LoadFeatureMaps();
-                    default: return new ShowMainReportAction(razor, processor);
+                    default: return new ShowMainMenuAction(razor, processor);
                 }
             }
-            return new ShowMainReportAction(razor, processor);
+            return new ShowMainMenuAction(razor, processor);
         }
 
         static IRazorEngineService EmbeddedRazor()

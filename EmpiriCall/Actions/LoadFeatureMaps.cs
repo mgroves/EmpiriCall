@@ -6,7 +6,8 @@ namespace EmpiriCall.Actions
     {
         public void Execute(HttpContext context)
         {
-            EmpiriCallConfig.FeatureMapper.Map(new MapFeature());
+            if (EmpiriCallConfig.FeatureMapper != null)
+                EmpiriCallConfig.FeatureMapper.Map(new MapFeature());
             context.Response.Redirect("/EmpiriCall.axd");
         }
     }

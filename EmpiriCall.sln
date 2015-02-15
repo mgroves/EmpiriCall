@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall", "EmpiriCall\Em
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data", "EmpiriCall.Data\EmpiriCall.Data.csproj", "{BFE757E1-07E3-40F1-94FE-9662C2E86383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.Db4o", "EmpiriCall.Data.Db4o\EmpiriCall.Data.Db4o.csproj", "{5C838098-0195-4BF3-970B-C94717B946C2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.SQLServer", "EmpiriCall.Data.SQLServer\EmpiriCall.Data.SQLServer.csproj", "{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3684C39A-293D-4B8C-AE8E-E4B82E19BF4B}"
@@ -39,10 +37,6 @@ Global
 		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFE757E1-07E3-40F1-94FE-9662C2E86383}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C838098-0195-4BF3-970B-C94717B946C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C838098-0195-4BF3-970B-C94717B946C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C838098-0195-4BF3-970B-C94717B946C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C838098-0195-4BF3-970B-C94717B946C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}.Release|Any CPU.ActiveCfg = Release|Any CPU

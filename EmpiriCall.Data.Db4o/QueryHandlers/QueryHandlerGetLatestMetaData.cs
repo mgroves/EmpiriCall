@@ -6,16 +6,16 @@ using EmpiriCall.Data.DataAccess.CommandQueries;
 
 namespace EmpiriCall.Data.Db4o.QueryHandlers
 {
-    public class QueryHandlerGetMetaData : IQueryHandler<QueryGetMetaData, MetaData>
+    public class QueryHandlerGetLatestMetaData : IQueryHandler<QueryGetLatestMetaData, MetaData>
     {
         readonly string _db4oFilePath;
 
-        public QueryHandlerGetMetaData(string db4oFilePath)
+        public QueryHandlerGetLatestMetaData(string db4oFilePath)
         {
             _db4oFilePath = db4oFilePath;
         }
 
-        public MetaData Handle(QueryGetMetaData args)
+        public MetaData Handle(QueryGetLatestMetaData args)
         {
             using (var db = Db4oEmbedded.OpenFile(_db4oFilePath))
                 return db.Query<MetaData>().OrderByDescending(m => m.Version).FirstOrDefault();

@@ -82,7 +82,7 @@
     <Compile Include="Services\IAnalyticEngine.cs" />
     <Compile Include="Actions\IEmpiriCallAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Actions\ShowMainReportAction.cs" />
+    <Compile Include="Actions\ShowMainMenuAction.cs" />
     <Compile Include="Actions\ShowRawDetailAction.cs" />
     <Compile Include="Actions\ShowMetaDataAction.cs" />
     <Compile Include="Actions\ShowCallDataAction.cs" />
@@ -90,7 +90,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="Templates\MainReport.cshtml" />
+    <EmbeddedResource Include="Templates\MainMenu.cshtml" />
     <EmbeddedResource Include="Templates\RawDetail.cshtml" />
     <EmbeddedResource Include="Templates\MetaData.cshtml" />
     <EmbeddedResource Include="Templates\CallData.cshtml" />

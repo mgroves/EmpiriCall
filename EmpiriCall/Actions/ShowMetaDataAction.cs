@@ -21,7 +21,7 @@ namespace EmpiriCall.Actions
         {
             var viewModel = new MetaDataView();
 
-            viewModel.Meta = _processor.Query(new QueryGetMetaData());
+            viewModel.Meta = _processor.Query(new QueryGetLatestMetaData());
             context.Response.Write(_razor.View("MetaData", viewModel));
         }
     }

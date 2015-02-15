@@ -2,7 +2,7 @@
 
 namespace EmpiriCall.Data.DataAccess.CommandQueries
 {
-    public class QueryGetMetaData : IQuery<MetaData>
+    public class QueryGetLatestMetaData : IQuery<MetaData>
     {
          
     }

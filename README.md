@@ -6,7 +6,7 @@ Record and display information about how your ASP.NET MVC site is being used.
 
 There are only 4 easy steps to get EmpiriCall running right now.
 
-1. Add a reference to EmpiriCall. You'll also want an EmpiriCall data provider like EmpiriCall.Data.Db4o or EmpiriCall.Data.SQLServer (technically not required, you could write your own). Once I get EmpiriCall on NuGet, then you've probably already done this.
+1. Add a reference to EmpiriCall. You'll also want an EmpiriCall data provider like EmpiriCall.Data.SQLServer (technically not required, you could write your own). Once I get EmpiriCall on NuGet, then you've probably already done this.
 
 2. To view the console and reports for EmpiriCall, you must add an HttpHandler to your Web.config. It's as simple as:
 ```
@@ -22,13 +22,8 @@ There are only 4 easy steps to get EmpiriCall running right now.
 GlobalFilters.Filters.Add(new EmpiriCallActionFilter());
 ```
 
-4. Tell EmpiriCall which data provider you're using. This can probably go in Global.ascx too (perhaps Application_BeginRequest). Here are the ways to use the two data providers that I've created so far:
+4. Tell EmpiriCall which data provider you're using. This can probably go in Global.ascx too (perhaps Application_BeginRequest). I only have one provider so far, here's how to use it:
 ```
-// db4o data provider
-// You'll need read/write access to the file
-// and you'll probably want to use something like HttpContext.Current.Server.MapPath
-EmpiriCallConfig.LoadDbContainer(new Db4oResolver("a db4o filename"));
-
 // SQL Server (with Entity Framework)
 EmpiriCallConfig.LoadDbContainer(new SqlServerResolver([a DbConnection));
 ```
@@ -128,11 +123,11 @@ I know that EmpiriCall can't be the first tool to try and answer these questions
 
 The result is: **empirical evidence**.
 
-# I don't want to use db4o or SQL+Entity Framework
+# I don't want to use SQL+Entity Framework like in your provider
 
 You can write your own data provider that uses MySQL, SQL with some other ORM, Raven, whatever you want.
 
-Create an implementation of IDependencyResolver that will return the various DB command/query objects (see SqlServerResolver and Db4oResolver for examples).
+Create an implementation of IDependencyResolver that will return the various DB command/query objects (see SqlServerResolver for examples).
 
 Create implementations of the various queries/commands and handlers. There are only 5 at the time of this writing:
 ```
@@ -146,8 +141,6 @@ CommandMapFeature
 # License
 
 EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer are all licensed under the MIT License: http://choosealicense.com/licenses/mit/
-
-EmpiriCall.Data.Db4o is licensed under the GPL license (since it uses db4o).
 
 # TODO
 

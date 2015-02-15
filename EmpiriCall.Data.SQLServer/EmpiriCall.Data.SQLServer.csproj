@@ -89,7 +89,7 @@
     <Compile Include="Entities\MetaDataMap.cs" />
     <Compile Include="Entities\ParameterBasicInfoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryHandlers\QueryHandlerGetMetaData.cs" />
+    <Compile Include="QueryHandlers\QueryHandlerGetLatestMetaData.cs" />
     <Compile Include="QueryHandlers\QueryHandlerRawDetail.cs" />
     <Compile Include="SqlServerResolver.cs" />
   </ItemGroup>

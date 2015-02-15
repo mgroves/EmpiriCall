@@ -29,8 +29,8 @@ namespace EmpiriCall.Data.Db4o
                 return new CommandHandlerAddRecord(_db4oFilePath);
             else if (serviceType == typeof (IQueryHandler<QueryRawDetail, List<DetailRecord>>))
                 return new QueryHandlerRawDetail(_db4oFilePath);
-            else if (serviceType == typeof (IQueryHandler<QueryGetMetaData, MetaData>))
-                return new QueryHandlerGetMetaData(_db4oFilePath);
+            else if (serviceType == typeof (IQueryHandler<QueryGetLatestMetaData, MetaData>))
+                return new QueryHandlerGetLatestMetaData(_db4oFilePath);
             else if (serviceType == typeof (ICommandHandler<CommandMapFeature>))
                 return new CommandHandlerMapFeature(_db4oFilePath);
             else if (serviceType == typeof (ICommandHandler<CommandCreateMetaDataIfNecessary>))

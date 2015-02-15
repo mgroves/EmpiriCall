@@ -4,6 +4,7 @@
 
 <table border="1">
     <tr>
+        <td>Meta Data Version</td>
         <td>Controller Name</td>
         <td>Action Name</td>
         <td>Parameter Info</td>
@@ -14,6 +15,7 @@
     @foreach (var detailRecord in Model.Details)
     {
         <tr>
+            <td>@detailRecord.ActionInfo.MetaData.Version</td>
             <td>@detailRecord.ActionInfo.ControllerName</td>
             <td>@detailRecord.ActionInfo.ActionName</td>
             <td>@string.Join(",", @detailRecord.ActionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName + " " + p.ParameterName))</td>

@@ -71,7 +71,7 @@
     <Compile Include="CommandHandlers\CommandHandlerAddNewMetaDataVersion.cs" />
     <Compile Include="Db4oResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryHandlers\QueryHandlerGetMetaData.cs" />
+    <Compile Include="QueryHandlers\QueryHandlerGetLatestMetaData.cs" />
     <Compile Include="QueryHandlers\QueryHandlerRawDetail.cs" />
   </ItemGroup>
   <ItemGroup>

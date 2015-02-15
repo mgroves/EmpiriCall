@@ -6,12 +6,12 @@ using RazorEngine.Templating;
 
 namespace EmpiriCall.Actions
 {
-    public class ShowMainReportAction : IEmpiriCallAction
+    public class ShowMainMenuAction : IEmpiriCallAction
     {
         readonly IRazorEngineService _razor;
         readonly Processor _processor;
 
-        public ShowMainReportAction(IRazorEngineService razor, Processor processor)
+        public ShowMainMenuAction(IRazorEngineService razor, Processor processor)
         {
             _razor = razor;
             _processor = processor;
@@ -20,9 +20,9 @@ namespace EmpiriCall.Actions
         public void Execute(HttpContext context)
         {
             var viewModel = new MainReportView();
-            var metaData = _processor.Query(new QueryGetMetaData());
-            viewModel.LastMetaDataUpdateDate = metaData == null ? "Never" : metaData.LastUpdated.ToString();
-            context.Response.Write(_razor.View("MainReport", viewModel));
+            var metaData = _processor.Query(new QueryGetLatestMetaData());
+            viewModel.LastMetaDataUpdateDate = metaData == null ? "Never" : metaData.LastUpdated + " (Version " + metaData.Version + ")";
+            context.Response.Write(_razor.View("MainMenu", viewModel));
         }
     }
 }

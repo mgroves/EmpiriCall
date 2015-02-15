@@ -23,7 +23,7 @@ namespace EmpiriCall.Data.Db4o.QueryHandlers
                     .OrderByDescending(m => m.Version)
                     .First()
                     .ActionInfo
-                    .SelectMany(x => x.CallRecords)
+                    .SelectMany(x => x.CallRecords ?? new List<DetailRecord>())
                     .ToList();
         }
     }

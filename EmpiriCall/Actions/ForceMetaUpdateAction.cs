@@ -4,11 +4,11 @@ using EmpiriCall.Data.DataAccess.CommandQueries;
 
 namespace EmpiriCall.Actions
 {
-    public class ForceMetaUpdateAction : IEmpiriCallAction
+    public class AddMetaDataVersionAction : IEmpiriCallAction
     {
         readonly IProcessor _processor;
 
-        public ForceMetaUpdateAction(IProcessor processor)
+        public AddMetaDataVersionAction(IProcessor processor)
         {
             _processor = processor;
         }

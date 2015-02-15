@@ -13,6 +13,7 @@ namespace EmpiriCall.Data.SQLServer.Entities
             this.Property(x => x.ActionName);
             this.Property(x => x.Feature);
             this.HasMany(x => x.ParameterInfo);
+            this.HasRequired(x => x.MetaData);
         }
     }
 }
