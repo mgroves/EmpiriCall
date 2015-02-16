@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AnalyticEngineConfig.cs" />
     <Compile Include="Actions\ActionFactory.cs" />
+    <Compile Include="RazorHelper.cs" />
     <Compile Include="EmpiriCallConfig.cs" />
     <Compile Include="IFeatureMapper.cs" />
     <Compile Include="MapFeature.cs" />
@@ -101,6 +102,10 @@
       <Project>{bfe757e1-07e3-40f1-94fe-9662c2e86383}</Project>
       <Name>EmpiriCall.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\bootstrap.min.css" />
+    <EmbeddedResource Include="Templates\bootstrap.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

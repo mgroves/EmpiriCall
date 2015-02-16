@@ -1,9 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Web;
+using System.Web.Mvc;
 using EmpiriCall.Data.DataAccess;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
+using RazorEngine.Text;
 
 namespace EmpiriCall.Actions
 {
@@ -34,11 +37,8 @@ namespace EmpiriCall.Actions
             var config = new TemplateServiceConfiguration();
             config.TemplateManager = new DelegateTemplateManager(s =>
             {
-                var assembly = Assembly.GetExecutingAssembly();
-                var resourceName = "EmpiriCall.Templates." + s + ".cshtml";
-                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                using (var reader = new StreamReader(stream))
-                    return reader.ReadToEnd();
+                return RazorHelper.TextOfResource(s + ".cshtml");
+
             });
             config.Debug = true;
             return RazorEngineService.Create(config);
