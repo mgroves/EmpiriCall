@@ -27,6 +27,7 @@ GlobalFilters.Filters.Add(new EmpiriCallActionFilter());
 // SQL Server (with Entity Framework)
 EmpiriCallConfig.LoadDbContainer(new SqlServerResolver([a DbConnection));
 ```
+Assuming you're using the Entity Framework provider, you'll need to add a reference to EntityFramework.SqlServer.dll to your web project. Why? I'm not really sure. Maybe take that up with Microsoft, or look here for more information: http://stackoverflow.com/questions/18455747/no-entity-framework-provider-found-for-the-ado-net-provider-with-invariant-name
 
 # How does the console work?
 

@@ -66,11 +66,12 @@
   <ItemGroup>
     <Compile Include="AnalyticEngineConfig.cs" />
     <Compile Include="Actions\ActionFactory.cs" />
-    <Compile Include="RazorHelper.cs" />
+    <Compile Include="RazorCustomTemplateBase.cs" />
     <Compile Include="EmpiriCallConfig.cs" />
     <Compile Include="IFeatureMapper.cs" />
     <Compile Include="MapFeature.cs" />
     <Compile Include="Actions\LoadFeatureMaps.cs" />
+    <Compile Include="ResourceHelper.cs" />
     <Compile Include="Services\DefaultAnalyticEngine.cs" />
     <Compile Include="EmpiriCallActionFilter.cs" />
     <Compile Include="EmpiriCallReportHandler.cs" />

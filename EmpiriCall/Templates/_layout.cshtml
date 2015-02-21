@@ -1,8 +1,8 @@
-﻿@using EmpiriCall
+﻿@using EmpiriCall.Actions.ViewModels
 <html>
     <head>
         <title>EmpiriCall</title>
-        @Raw(RazorHelper.Css("bootstrap.min.css"))
+        @Raw(this.Css("bootstrap.min.css"))
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -18,12 +18,12 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="/EmpiriCall.axd">Home</a></li>
-                        <li><a href="?command=rawdetail">Raw Detail</a></li>
-                        <li><a href="?command=addmetaversion">Add New Meta</a></li>
-                        <li><a href="?command=showmetadata">Current Meta Data</a></li>
-                        <li><a href="?command=showcalldata">Show Call Data</a></li>
-                        <li><a href="?command=loadfeature">Load Feature Maps</a></li>
+                        <li @IsSelected("")><a href="/EmpiriCall.axd">Home</a></li>
+                        <li @IsSelected("rawdetail")><a href="?command=rawdetail">Raw Detail</a></li>
+                        <li @IsSelected("addmetaversion")><a href="?command=addmetaversion">Add New Meta</a></li>
+                        <li @IsSelected("showmetadata")><a href="?command=showmetadata">Current Meta Data</a></li>
+                        <li @IsSelected("showcalldata")><a href="?command=showcalldata">Show Call Data</a></li>
+                        <li @IsSelected("loadfeature")><a href="?command=loadfeature">Load Feature Maps</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,6 +33,15 @@
             @RenderBody()
         </div>
 
-        @Raw(RazorHelper.Js("bootstrap.min.js"))
-</body>
+        @Raw(this.Js("bootstrap.min.js"))
+    </body>
 </html>
+
+@helper IsSelected(string name)
+{
+    string command = Request.QueryString["command"] ?? "";
+    if(command == name)
+    {
+        <text>class="active"</text>
+    }
+}

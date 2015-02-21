@@ -35,12 +35,9 @@ namespace EmpiriCall.Actions
         static IRazorEngineService EmbeddedRazor()
         {
             var config = new TemplateServiceConfiguration();
-            config.TemplateManager = new DelegateTemplateManager(s =>
-            {
-                return RazorHelper.TextOfResource(s + ".cshtml");
-
-            });
+            config.TemplateManager = new DelegateTemplateManager(s => ResourceHelper.TextOfResource(s + ".cshtml"));
             config.Debug = true;
+            config.BaseTemplateType = typeof (RazorCustomTemplateBase<>);
             return RazorEngineService.Create(config);
         }
     }
