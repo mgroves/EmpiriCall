@@ -1,7 +1,7 @@
 ﻿@using EmpiriCall.Actions.ViewModels
 <html>
     <head>
-        <title>EmpiriCall</title>
+        <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "" : (ViewBag.Title + " - ")) EmpiriCall</title>
         @Raw(this.Css("bootstrap.min.css"))
     </head>
     <body>

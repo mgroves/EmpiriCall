@@ -2,15 +2,9 @@
 
 @{
     Layout = "_layout";
+    ViewBag.Title = "Home";
 }
 
-EmpiriCall Reports!<br />
-<br />
-Meta data last updated: @Model.LastMetaDataUpdateDate
-<br />
-0) <a href="/EmpiriCall.axd">Home</a><br />
-1) <a href="?command=rawdetail">Raw Detail</a><br />
-2) <a href="?command=addmetaversion">Add New Meta Data version</a><br />
-3) <a href="?command=showmetadata">Show Current Meta Data version</a><br />
-4) <a href="?command=showcalldata">Show Call Data against current meta data version</a><br />
-5) <a href="?command=loadfeature">Load Feature Maps Into current Meta Data version</a><br />
+<h1>Welcome to EmpiriCall</h1>
+<p>Meta data last updated: @Model.LastMetaDataUpdateDate</p>
+<p>For help using EmpiriCall, visit <a href="https://github.com/mgroves/EmpiriCall">EmpiriCall on Github</a></p>

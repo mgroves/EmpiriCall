@@ -11,6 +11,13 @@ namespace EmpiriCall
 {
     public class MapFeature
     {
+        internal List<CommandMapFeature> Log { get; private set; }
+
+        internal MapFeature()
+        {
+            Log = new List<CommandMapFeature>();
+        }
+
         public MapFeature Of<T>(Expression<Func<T, ActionResult>> exp, string featureName) where T : Controller
         {
             var controllerName = typeof (T).FullName;
@@ -33,7 +40,15 @@ namespace EmpiriCall
         void MapToMetaData(string controllerName, string actionName, List<ParameterBasicInfo> parameterBasicInfos, string featureName)
         {
             var processor = new Processor(EmpiriCallConfig.Resolver);
-            processor.Execute(new CommandMapFeature { FeatureName = featureName, ControllerName = controllerName, ActionName = actionName, ParameterBasicInfos = parameterBasicInfos});
+            var cmf = new CommandMapFeature
+            {
+                FeatureName = featureName,
+                ControllerName = controllerName,
+                ActionName = actionName,
+                ParameterBasicInfos = parameterBasicInfos
+            };
+            processor.Execute(cmf);
+            Log.Add(cmf);
         }
     }
 }

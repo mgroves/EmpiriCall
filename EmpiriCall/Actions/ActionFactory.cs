@@ -25,7 +25,7 @@ namespace EmpiriCall.Actions
                     case "addmetaversion": return new AddMetaDataVersionAction(processor);
                     case "showmetadata": return new ShowMetaDataAction(razor, processor);
                     case "showcalldata": return new ShowCallDataAction(razor, processor);
-                    case "loadfeature": return new LoadFeatureMaps();
+                    case "loadfeature": return new LoadFeatureMaps(razor);
                     default: return new ShowMainMenuAction(razor, processor);
                 }
             }

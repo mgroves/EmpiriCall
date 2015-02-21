@@ -1,0 +1,39 @@
+﻿@model EmpiriCall.Actions.ViewModels.LoadFeatureMapViewModel
+
+@{
+    Layout = "_layout";
+    ViewBag.Title = "Load Feature Maps";
+}
+
+<h1>Load Feature Maps</h1>
+
+@if (Model.MapFeatureLog == null || !Model.MapFeatureLog.Any())
+{
+    <p>No feature maps loaded.</p>
+}
+else
+{
+    <p>These feature maps were loaded:</p>
+    
+    <div class="table-responsive" style="height: 500px; overflow: auto;">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Feature name</th>
+                <th>Controller</th>
+                <th>Action</th>
+                <th>Parameter Types</th>
+                <th>Parameter Names</th>
+            </tr>
+            @foreach (var mapFeature in Model.MapFeatureLog)
+            {
+                <tr>
+                    <td>@mapFeature.FeatureName</td>                    
+                    <td>@mapFeature.ControllerName</td>                    
+                    <td>@mapFeature.ActionName</td>                    
+                    <td>@(string.Join(",", mapFeature.ParameterBasicInfos.Select(p => p.ParameterTypeFullName).ToArray()))</td>                    
+                    <td>@(string.Join(",", mapFeature.ParameterBasicInfos.Select(p => p.ParameterName).ToArray()))</td>                    
+                </tr>
+            }
+        </table>
+    </div>
+}
