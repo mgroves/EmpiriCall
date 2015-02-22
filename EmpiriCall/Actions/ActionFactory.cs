@@ -17,19 +17,16 @@ namespace EmpiriCall.Actions
             var razor = EmbeddedRazor();
             var processor = new Processor(EmpiriCallConfig.Resolver);
 
-            if (commandString != null)
+            switch (commandString)
             {
-                switch (commandString)
-                {
-                    case "rawdetail": return new ShowRawDetailAction(razor, processor);
-                    case "addmetaversion": return new AddMetaDataVersionAction(processor);
-                    case "showmetadata": return new ShowMetaDataAction(razor, processor);
-                    case "showcalldata": return new ShowCallDataAction(razor, processor);
-                    case "loadfeature": return new LoadFeatureMaps(razor);
-                    default: return new ShowMainMenuAction(razor, processor);
-                }
+                case "rawdetail": return new ShowRawDetailAction(razor, processor);
+                case "addmetaversion": return new AddMetaDataVersionAction(processor);
+                case "showmetadata": return new ShowMetaDataAction(razor, processor);
+                case "showcalldata": return new ShowCallDataAction(razor, processor);
+                case "loadfeature": return new LoadFeatureMaps(razor);
+                default:
+                    return new ViewOrShowMainMenuAction(commandString, razor, processor);
             }
-            return new ShowMainMenuAction(razor, processor);
         }
 
         static IRazorEngineService EmbeddedRazor()

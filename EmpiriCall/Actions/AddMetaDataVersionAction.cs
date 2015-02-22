@@ -17,7 +17,7 @@ namespace EmpiriCall.Actions
         {
             _processor.Execute(new CommandAddNewMetaDataVersion());
 
-            context.Response.Redirect("/EmpiriCall.axd");
+            context.Response.Redirect("/EmpiriCall.axd?command=addmetaversiondone");
         }
     }
 }
