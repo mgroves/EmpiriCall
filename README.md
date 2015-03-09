@@ -143,7 +143,7 @@ EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer are all licensed under th
 
 # Stuff that still needs done
 
-* Performance testing / adjustments: maybe batching? maybe async?
+* Performance testing / adjustments: maybe batching? maybe async or Mongo/Couch fire&forget?
 * Auth, since EmpiriCall runs in production, access should be restricted
 * More reports for username, custom values, date/time.
 * Ability to add/edit feature mapping in the UI.

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall", "EmpiriCall\EmpiriCall.csproj", "{267ED206-0B5B-4862-BBA3-D951E760EB7D}"
 EndProject
@@ -21,8 +21,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67D0F7E8-57F8-43E2-8271-507FF00F58D6}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
+		Local.testsettings = Local.testsettings
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.LoadTest", "EmpiriCall.LoadTest\EmpiriCall.LoadTest.csproj", "{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +49,10 @@ Global
 		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A3DC234-35E1-4588-9BC7-053134FF8438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
