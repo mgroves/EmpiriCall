@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.LoadTest", "Empi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.RabbitMQ", "EmpiriCall.Data.RabbitMQ\EmpiriCall.Data.RabbitMQ.csproj", "{5C9B664B-C4D4-4153-8666-D9EED8100B74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.RabbitMQ.Consumer", "EmpiriCall.Data.RabbitMQ.Consumer\EmpiriCall.Data.RabbitMQ.Consumer.csproj", "{2D8F3FEA-94B2-4D95-A245-2E5C16A8BE03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D8F3FEA-94B2-4D95-A245-2E5C16A8BE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8F3FEA-94B2-4D95-A245-2E5C16A8BE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8F3FEA-94B2-4D95-A245-2E5C16A8BE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8F3FEA-94B2-4D95-A245-2E5C16A8BE03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

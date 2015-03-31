@@ -137,6 +137,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmpiriCall.Data.RabbitMQ\EmpiriCall.Data.RabbitMQ.csproj">
+      <Project>{5C9B664B-C4D4-4153-8666-D9EED8100B74}</Project>
+      <Name>EmpiriCall.Data.RabbitMQ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmpiriCall.Data.SQLServer\EmpiriCall.Data.SQLServer.csproj">
       <Project>{714410C9-6B9A-4C18-9D7E-A3AF0FD0F86C}</Project>
       <Name>EmpiriCall.Data.SQLServer</Name>

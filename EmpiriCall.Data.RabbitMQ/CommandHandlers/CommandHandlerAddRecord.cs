@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using EmpiriCall.Data.Data;
 using EmpiriCall.Data.DataAccess;
 using EmpiriCall.Data.DataAccess.CommandQueries;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
 
 namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
 {
@@ -13,34 +16,34 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
 
         public CommandHandlerAddRecord()
         {
-            
+            // TODO: What should be passed into this object? a channel? a connection?
+            // TODO: What should the user be configuring? a channel? a connection?
         }
 
         public void Handle(CommandAddRecord command)
         {
-            // TODO: this should dump a record into rabbit mq: no direct SQL interaction!
-            throw new NotImplementedException();
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare("EmpiriCallRawRecord", false, false, false, null);
 
-//            var metaData = _context.MetaData
-//                    .OrderByDescending(m => m.Version)
-//                    .First();
-//
-//            var action = metaData.ActionInfo
-//                    .Where(a => a.ActionName == command.ActionName)
-//                    .Where(a => a.ControllerName == command.ControllerName)
-//                    .Where(a => ParameterBasicInfo.AreTheSame(command.ParameterInfo, a.ParameterInfo))
-//                    .First();
-//            
-//            if (action.CallRecords == null)
-//                action.CallRecords = new List<DetailRecord>();
-//
-//            action.CallRecords.Add(new DetailRecord
-//            {
-//                CustomValues = command.CustomValues,
-//                UserName = command.UserName,
-//                TimeStamp = command.TimeStamp
-//            });
-//            _context.SaveChanges();
+                    var record = new QueueMessage
+                    {
+                        ActionName = command.ActionName,
+                        ControllerName = command.ControllerName,
+                        ParameterInfo = command.ParameterInfo,
+                        CustomValues = command.CustomValues,
+                        UserName = command.UserName,
+                        TimeStamp = command.TimeStamp
+                    };
+                    var recordJson = JsonConvert.SerializeObject(record);
+                    var recordBytes = Encoding.UTF8.GetBytes(recordJson);
+
+                    channel.BasicPublish("", "EmpiriCallRawRecord", null, recordBytes);
+                }
+            }
         }
     }
 }

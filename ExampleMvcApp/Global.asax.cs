@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using EmpiriCall;
+using EmpiriCall.Data.RabbitMQ;
 using EmpiriCall.Data.SQLServer;
 using StructureMap.Web.Pipeline;
 
@@ -20,7 +21,7 @@ namespace ExampleMvcApp
 
         protected void Application_BeginRequest()
         {
-            EmpiriCallConfig.LoadDbContainer(new SqlServerResolver(DependencyResolver.Current.GetService<DbConnection>()));
+            EmpiriCallConfig.LoadDbContainer(new RabbitMqResolver(DependencyResolver.Current.GetService<DbConnection>()));
             EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());
         }
 
