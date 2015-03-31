@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.LoadTest", "EmpiriCall.LoadTest\EmpiriCall.LoadTest.csproj", "{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpiriCall.Data.RabbitMQ", "EmpiriCall.Data.RabbitMQ\EmpiriCall.Data.RabbitMQ.csproj", "{5C9B664B-C4D4-4153-8666-D9EED8100B74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB8B6F5-D754-4D1D-BED3-B7A39023394F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9B664B-C4D4-4153-8666-D9EED8100B74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
