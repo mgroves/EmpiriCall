@@ -13,10 +13,12 @@ namespace EmpiriCall.Data.RabbitMQ
     public class RabbitMqResolver : IDependencyResolver
     {
         readonly EmpiriCallDbContext _context;
+        readonly string _rabbitMqHostName;
 
-        public RabbitMqResolver(DbConnection connectionString)
+        public RabbitMqResolver(DbConnection connectionString, string rabbitMqHostName)
         {
             _context = new EmpiriCallDbContext(connectionString);
+            _rabbitMqHostName = rabbitMqHostName;
         }
 
         public object GetService(Type serviceType)
@@ -27,7 +29,7 @@ namespace EmpiriCall.Data.RabbitMQ
             if (serviceType == typeof(ICommandHandler<CommandAddNewMetaDataVersion>))
                 return new CommandHandlerAddNewMetaDataVersion(_context);
             else if (serviceType == typeof(ICommandHandler<CommandAddRecord>))
-                return new CommandHandlerAddRecord();
+                return new CommandHandlerAddRecord(_rabbitMqHostName);
             else if (serviceType == typeof(IQueryHandler<QueryRawDetail, List<DetailRecord>>))
                 return new QueryHandlerRawDetail(_context);
             else if (serviceType == typeof(IQueryHandler<QueryGetLatestMetaData, MetaData>))

@@ -21,7 +21,15 @@ namespace ExampleMvcApp
 
         protected void Application_BeginRequest()
         {
-            EmpiriCallConfig.LoadDbContainer(new RabbitMqResolver(DependencyResolver.Current.GetService<DbConnection>()));
+            // use this to write to SQL directly:
+            //EmpiriCallConfig.LoadDbContainer(new SqlServerResolver(DependencyResolver.Current.GetService<DbConnection>()));
+
+            // use this to write to rabbitMQ queue, of which the consumer will write to SQL
+            EmpiriCallConfig.LoadDbContainer(new RabbitMqResolver(
+                DependencyResolver.Current.GetService<DbConnection>(),
+                "localhost"));
+
+            // specify a feature map (optional)
             EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());
         }
 

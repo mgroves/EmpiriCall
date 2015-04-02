@@ -12,17 +12,16 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
 {
     public class CommandHandlerAddRecord : ICommandHandler<CommandAddRecord>
     {
-        
+        readonly string _rabbitMqHostName;
 
-        public CommandHandlerAddRecord()
+        public CommandHandlerAddRecord(string rabbitMqHostName)
         {
-            // TODO: What should be passed into this object? a channel? a connection?
-            // TODO: What should the user be configuring? a channel? a connection?
+            _rabbitMqHostName = rabbitMqHostName;
         }
 
         public void Handle(CommandAddRecord command)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = _rabbitMqHostName };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
