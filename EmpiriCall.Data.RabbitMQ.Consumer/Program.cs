@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,35 +13,42 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
 {
     class Program
     {
-        // TODO: how is this configured (SQL connection string, RabbitMq stuff)?
-        // TODO: queue name configured? or should not be a magic string at least?
-
         static EmpiriCallDbContext Context;
+        static ConnectionFactory Factory;
 
 
         static void Main(string[] args)
         {
-            Context = new EmpiriCallDbContext(new SqlConnection("server=(local);uid=;pwd=;Trusted_Connection=yes;database=EmpiriCallDemoDb"));
-            
-            var factory = new ConnectionFactory() { HostName = "localhost" };
-            using (var connection = factory.CreateConnection())
+            var queueName = ConfigurationManager.AppSettings["RabbitMqQueueName"] ?? "EmpiriCallRawRecord";
+            var sqlConnectionString = ConfigurationManager.AppSettings["SqlConnectionString"];
+            var rabbitMqHostName = ConfigurationManager.AppSettings["RabbitMqHostName"];
+
+            Context = new EmpiriCallDbContext(new SqlConnection(sqlConnectionString));
+            Factory = new ConnectionFactory() { HostName = rabbitMqHostName };
+
+            StartReadingFromQueue(queueName);
+        }
+
+        static void StartReadingFromQueue(string queueName)
+        {
+            using (var connection = Factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
                 {
-                    channel.QueueDeclare("EmpiriCallRawRecord", false, false, false, null);
+                    channel.QueueDeclare(queueName, false, false, false, null);
 
                     var consumer = new QueueingBasicConsumer(channel);
-                    channel.BasicConsume("EmpiriCallRawRecord", true, consumer);
+                    channel.BasicConsume(queueName, true, consumer);
 
                     Console.WriteLine(" [*] Waiting for messages.  To exit press CTRL+C");
                     while (true)
                     {
-                        var ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                        var ea = (BasicDeliverEventArgs) consumer.Queue.Dequeue();
 
                         var body = ea.Body;
                         var message = Encoding.UTF8.GetString(body);
                         var record = JsonConvert.DeserializeObject<QueueMessage>(message);
-                        Console.WriteLine(" [x] Received '{0}...'", message.Substring(0,30));
+                        Console.WriteLine(" [x] Received '{0}...'", message.Substring(0, 30));
 
                         SaveRecordToDatabase(record);
 
@@ -49,6 +57,7 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
                 }
             }
         }
+
 
         static void SaveRecordToDatabase(QueueMessage record)
         {

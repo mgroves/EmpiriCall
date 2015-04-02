@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EmpiriCall.Data.Data;
+﻿using System.Text;
 using EmpiriCall.Data.DataAccess;
 using EmpiriCall.Data.DataAccess.CommandQueries;
 using Newtonsoft.Json;
@@ -12,11 +8,14 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
 {
     public class CommandHandlerAddRecord : ICommandHandler<CommandAddRecord>
     {
+        // "EmpiriCallRawRecord"
         readonly string _rabbitMqHostName;
+        readonly string _rabbitMqQueueName;
 
-        public CommandHandlerAddRecord(string rabbitMqHostName)
+        public CommandHandlerAddRecord(string rabbitMqHostName, string rabbitMqQueueName)
         {
             _rabbitMqHostName = rabbitMqHostName;
+            _rabbitMqQueueName = rabbitMqQueueName;
         }
 
         public void Handle(CommandAddRecord command)
@@ -26,7 +25,7 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
             {
                 using (var channel = connection.CreateModel())
                 {
-                    channel.QueueDeclare("EmpiriCallRawRecord", false, false, false, null);
+                    channel.QueueDeclare(_rabbitMqQueueName, false, false, false, null);
 
                     var record = new QueueMessage
                     {
@@ -40,7 +39,7 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
                     var recordJson = JsonConvert.SerializeObject(record);
                     var recordBytes = Encoding.UTF8.GetBytes(recordJson);
 
-                    channel.BasicPublish("", "EmpiriCallRawRecord", null, recordBytes);
+                    channel.BasicPublish("", _rabbitMqQueueName, null, recordBytes);
                 }
             }
         }
