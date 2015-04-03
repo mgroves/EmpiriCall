@@ -16,6 +16,8 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
         static EmpiriCallDbContext Context;
         static ConnectionFactory Factory;
 
+        // TODO: convert this to a service/console app
+        // http://stackoverflow.com/a/15493790/40015
 
         static void Main(string[] args)
         {

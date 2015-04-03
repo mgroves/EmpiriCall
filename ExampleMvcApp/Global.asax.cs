@@ -32,7 +32,7 @@ namespace ExampleMvcApp
                 ));
 
             // specify a feature map (optional)
-            EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());
+            //EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());
         }
 
         protected void Application_EndRequest()

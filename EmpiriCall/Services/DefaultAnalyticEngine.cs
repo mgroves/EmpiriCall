@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web.Mvc;
 using EmpiriCall.Data.Data;
 using EmpiriCall.Data.DataAccess;
@@ -12,12 +13,32 @@ namespace EmpiriCall.Services
     {
         public void Execute(ActionExecutingContext filterContext, AnalyticEngineConfig config)
         {
-            // update meta data if necessary
             var queryProcessor = new Processor(EmpiriCallConfig.Resolver);
-            queryProcessor.Execute(new CommandCreateMetaDataIfNecessary());
+            // update meta data if necessary
+            if (!MetaDataCheckCached(filterContext)) {
+                queryProcessor.Execute(new CommandCreateMetaDataIfNecessary());
+                SetMetaDataCheckCached(filterContext);
+            }
 
             queryProcessor.Execute(ConstructDetail(filterContext, config));
         }
+
+        bool MetaDataCheckCached(ActionExecutingContext filterContext)
+        {
+            var cache = filterContext.HttpContext.Cache;
+            var cacheval = cache["EMPIRICALL_META_DATA_CHECKED"] as string;
+            if (cacheval == null)
+                return false;
+            return cacheval == "CHECKED";
+        }
+
+        void SetMetaDataCheckCached(ActionExecutingContext filterContext)
+        {
+            var cache = filterContext.HttpContext.Cache;
+            cache["EMPIRICALL_META_DATA_CHECKED"] = "CHECKED";
+        }
+
+
 
         CommandAddRecord ConstructDetail(ActionExecutingContext filterContext, AnalyticEngineConfig config)
         {
