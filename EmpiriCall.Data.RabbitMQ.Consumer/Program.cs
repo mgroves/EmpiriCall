@@ -3,67 +3,37 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
+using EasyNetQ;
 using EmpiriCall.Data.Data;
 using Newtonsoft.Json;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 
 namespace EmpiriCall.Data.RabbitMQ.Consumer
 {
     class Program
     {
-        static EmpiriCallDbContext Context;
-        static ConnectionFactory Factory;
+        static EmpiriCallDbContext _context;
 
         // TODO: convert this to a service/console app
         // http://stackoverflow.com/a/15493790/40015
 
         static void Main(string[] args)
         {
-            var queueName = ConfigurationManager.AppSettings["RabbitMqQueueName"] ?? "EmpiriCallRawRecord";
             var sqlConnectionString = ConfigurationManager.AppSettings["SqlConnectionString"];
             var rabbitMqHostName = ConfigurationManager.AppSettings["RabbitMqHostName"];
 
-            Context = new EmpiriCallDbContext(new SqlConnection(sqlConnectionString));
-            Factory = new ConnectionFactory() { HostName = rabbitMqHostName };
+            _context = new EmpiriCallDbContext(new SqlConnection(sqlConnectionString));
 
-            StartReadingFromQueue(queueName);
-        }
-
-        static void StartReadingFromQueue(string queueName)
-        {
-            using (var connection = Factory.CreateConnection())
+            using (var bus = RabbitHutch.CreateBus("host=" + rabbitMqHostName))
             {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queueName, false, false, false, null);
-
-                    var consumer = new QueueingBasicConsumer(channel);
-                    channel.BasicConsume(queueName, true, consumer);
-
-                    Console.WriteLine(" [*] Waiting for messages.  To exit press CTRL+C");
-                    while (true)
-                    {
-                        var ea = (BasicDeliverEventArgs) consumer.Queue.Dequeue();
-
-                        var body = ea.Body;
-                        var message = Encoding.UTF8.GetString(body);
-                        var record = JsonConvert.DeserializeObject<QueueMessage>(message);
-                        Console.WriteLine(" [x] Received '{0}...'", message.Substring(0, 30));
-
-                        SaveRecordToDatabase(record);
-
-                        Console.WriteLine(" [x] Saved to database");
-                    }
-                }
+                bus.Subscribe<QueueMessage>("EmpiriCallQueueMessage", SaveRecordToDatabase);
+                Console.WriteLine("Listening for messages. Hit <return> to quit.");
+                Console.ReadLine();
             }
         }
 
-
         static void SaveRecordToDatabase(QueueMessage record)
         {
-            var metaData = Context.MetaData
+            var metaData = _context.MetaData
                     .OrderByDescending(m => m.Version)
                     .First();
             
@@ -85,7 +55,8 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
                 UserName = record.UserName,
                 TimeStamp = record.TimeStamp
             });
-            Context.SaveChanges();
+            _context.SaveChanges();
+            Console.WriteLine("Wrote a message:" + JsonConvert.SerializeObject(record));
         }
     }
 }

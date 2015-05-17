@@ -1,47 +1,32 @@
-﻿using System.Text;
+﻿using EasyNetQ;
 using EmpiriCall.Data.DataAccess;
 using EmpiriCall.Data.DataAccess.CommandQueries;
-using Newtonsoft.Json;
-using RabbitMQ.Client;
 
 namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
 {
     public class CommandHandlerAddRecord : ICommandHandler<CommandAddRecord>
     {
-        // "EmpiriCallRawRecord"
         readonly string _rabbitMqHostName;
-        readonly string _rabbitMqQueueName;
 
-        public CommandHandlerAddRecord(string rabbitMqHostName, string rabbitMqQueueName)
+        public CommandHandlerAddRecord(string rabbitMqHostName)
         {
             _rabbitMqHostName = rabbitMqHostName;
-            _rabbitMqQueueName = rabbitMqQueueName;
         }
 
         public void Handle(CommandAddRecord command)
         {
-            var factory = new ConnectionFactory() { HostName = _rabbitMqHostName };
-            using (var connection = factory.CreateConnection())
+            var record = new QueueMessage
             {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(_rabbitMqQueueName, false, false, false, null);
+                ActionName = command.ActionName,
+                ControllerName = command.ControllerName,
+                ParameterInfo = command.ParameterInfo,
+                CustomValues = command.CustomValues,
+                UserName = command.UserName,
+                TimeStamp = command.TimeStamp
+            };
 
-                    var record = new QueueMessage
-                    {
-                        ActionName = command.ActionName,
-                        ControllerName = command.ControllerName,
-                        ParameterInfo = command.ParameterInfo,
-                        CustomValues = command.CustomValues,
-                        UserName = command.UserName,
-                        TimeStamp = command.TimeStamp
-                    };
-                    var recordJson = JsonConvert.SerializeObject(record);
-                    var recordBytes = Encoding.UTF8.GetBytes(recordJson);
-
-                    channel.BasicPublish("", _rabbitMqQueueName, null, recordBytes);
-                }
-            }
+            var bus = RabbitHutch.CreateBus("host=" + _rabbitMqHostName);
+            bus.Publish(record);
         }
     }
 }
