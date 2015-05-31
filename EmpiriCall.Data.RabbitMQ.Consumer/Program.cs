@@ -1,62 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using EasyNetQ;
-using EmpiriCall.Data.Data;
-using Newtonsoft.Json;
+using System.ServiceProcess;
 
 namespace EmpiriCall.Data.RabbitMQ.Consumer
 {
     class Program
     {
-        static EmpiriCallDbContext _context;
-
-        // TODO: convert this to a service/console app
-        // http://stackoverflow.com/a/15493790/40015
-
         static void Main(string[] args)
         {
-            var sqlConnectionString = ConfigurationManager.AppSettings["SqlConnectionString"];
-            var rabbitMqHostName = ConfigurationManager.AppSettings["RabbitMqHostName"];
+            var service = new ConsumerService();
 
-            _context = new EmpiriCallDbContext(new SqlConnection(sqlConnectionString));
-
-            using (var bus = RabbitHutch.CreateBus("host=" + rabbitMqHostName))
+            if (!Environment.UserInteractive)
             {
-                bus.Subscribe<QueueMessage>("EmpiriCallQueueMessage", SaveRecordToDatabase);
-                Console.WriteLine("Listening for messages. Hit <return> to quit.");
-                Console.ReadLine();
-            }
-        }
-
-        static void SaveRecordToDatabase(QueueMessage record)
-        {
-            var metaData = _context.MetaData
-                    .OrderByDescending(m => m.Version)
-                    .First();
-            
-            var action = metaData.ActionInfo
-                    .Where(a => a.ActionName == record.ActionName)
-                    .Where(a => a.ControllerName == record.ControllerName)
-                    .Where(a => ParameterBasicInfo.AreTheSame(record.ParameterInfo, a.ParameterInfo))
-                    .FirstOrDefault();
-
-            if (action == null)
+                var servicesToRun = new ServiceBase[] { service };
+                ServiceBase.Run(servicesToRun);
                 return;
-                        
-            if (action.CallRecords == null)
-                action.CallRecords = new List<DetailRecord>();
-            
-            action.CallRecords.Add(new DetailRecord
+            }
+
+            Console.WriteLine("Running EmpiriCall.Data.RabbitMQ as a Console Application");
+            Console.WriteLine("For more information, see https://github.com/mgroves/EmpiriCall");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Enter 'R' to run the service, enter anything else to exit.");
+            Console.Write("> ");
+
+            var input = Console.ReadLine() ?? "";
+
+            switch (input.ToUpper())
             {
-                CustomValues = record.CustomValues,
-                UserName = record.UserName,
-                TimeStamp = record.TimeStamp
-            });
-            _context.SaveChanges();
-            Console.WriteLine("Wrote a message:" + JsonConvert.SerializeObject(record));
+                case "R":
+                    service.Start(args);
+                    Console.ReadLine();
+                    break;
+                default:
+                    break;
+            }
+            Console.WriteLine("Exiting...");
         }
     }
 }

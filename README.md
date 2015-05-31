@@ -153,4 +153,3 @@ EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer, and EmpiriCall.Data.Rabb
 * Ability to add/edit/export feature mapping in the UI.
 * Better looking console/reports.
 * Move these docs into a wiki, flesh them out a bit more.
-* Make RabbitMQ into a service/console app (see: http://stackoverflow.com/a/15493790/40015)
