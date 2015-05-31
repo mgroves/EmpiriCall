@@ -27,9 +27,8 @@ namespace ExampleMvcApp
             // use this to write to rabbitMQ queue, of which the consumer will write to SQL
             EmpiriCallConfig.LoadDbContainer(new RabbitMqResolver(
                 DependencyResolver.Current.GetService<DbConnection>(),  // still need a SQL db connection for reporting
-                "localhost",                                            // the rabbit MQ hostname
-                "EmpiriCallRawRecord"                                   // the rabbit MQ queue name (optional, defaults to "EmpiriCallRawRecord")
-                ));
+                "localhost")                                            // the rabbit MQ hostname
+            );
 
             // specify a feature map (optional)
             //EmpiriCallConfig.LoadFeatureMapper(new ExampleMvcFeatureMap());

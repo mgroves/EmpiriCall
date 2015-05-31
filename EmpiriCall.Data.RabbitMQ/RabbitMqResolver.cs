@@ -14,13 +14,11 @@ namespace EmpiriCall.Data.RabbitMQ
     {
         readonly EmpiriCallDbContext _context;
         readonly string _rabbitMqHostName;
-        readonly string _rabbitMqQueueName;
 
-        public RabbitMqResolver(DbConnection connectionString, string rabbitMqHostName, string rabbitMqQueueName = "EmpiriCallRawRecord")
+        public RabbitMqResolver(DbConnection connectionString, string rabbitMqHostName)
         {
             _context = new EmpiriCallDbContext(connectionString);
             _rabbitMqHostName = rabbitMqHostName;
-            _rabbitMqQueueName = rabbitMqQueueName;
         }
 
         public object GetService(Type serviceType)
@@ -31,7 +29,7 @@ namespace EmpiriCall.Data.RabbitMQ
             if (serviceType == typeof(ICommandHandler<CommandAddNewMetaDataVersion>))
                 return new CommandHandlerAddNewMetaDataVersion(_context);
             else if (serviceType == typeof(ICommandHandler<CommandAddRecord>))
-                return new CommandHandlerAddRecord(_rabbitMqHostName, _rabbitMqQueueName);
+                return new CommandHandlerAddRecord(_rabbitMqHostName);
             else if (serviceType == typeof(IQueryHandler<QueryRawDetail, List<DetailRecord>>))
                 return new QueryHandlerRawDetail(_context);
             else if (serviceType == typeof(IQueryHandler<QueryGetLatestMetaData, MetaData>))
