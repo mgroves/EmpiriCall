@@ -4,7 +4,7 @@ Record and display information about how your ASP.NET MVC site is being used.
 
 # Quick Start
 
-There are only 4 easy steps to get EmpiriCall running right now.
+There are only 4 steps to get EmpiriCall running right now.
 
 1. Add a reference to EmpiriCall. You'll also want an EmpiriCall data provider like EmpiriCall.Data.SQLServer (technically not required, you could write your own). Once I get EmpiriCall on NuGet, then you've probably already done this.
 
@@ -28,6 +28,8 @@ GlobalFilters.Filters.Add(new EmpiriCallActionFilter());
 EmpiriCallConfig.LoadDbContainer(new SqlServerResolver([a DbConnection));
 ```
 Assuming you're using the Entity Framework provider, you'll need to add a reference to EntityFramework.SqlServer.dll to your web project. Why? I'm not really sure. Maybe take that up with Microsoft, or look here for more information: http://stackoverflow.com/questions/18455747/no-entity-framework-provider-found-for-the-ado-net-provider-with-invariant-name
+
+If you are using the RabbitMQ provider instead (EmpiriCall.Data.RabbitMQ), then you will also need to use the consumer project: EmpiriCall.Data.RabbitMQ.Consumer. This consumer is currently only setup to work with SQL Server via Entity Framework.
 
 # How does the console work?
 
@@ -86,7 +88,7 @@ The above code is basically saying: "The index, meta, and post actions in Accoun
 
 You can make the feature strings be as granular as you need.
 
-Note that you have to specify arguments in those lambdas, but those argument values are not used. Just use whatever placeholder value suits you.
+Note that you have to specify arguments in those lambdas, but those argument values are ignored. Use whatever placeholder value suits you.
 
 # Configuration
 
@@ -105,7 +107,7 @@ I created EmpiriCall to answer questions like:
 
 * Which features are never being used?
 * Which features are used the least?
-* What features does a customer use the most/least?
+* Which features does a customer use the most/least?
 * How many different users use a feature?
 
 If we know the answers to these questions, then we can use it to make decisions like:
@@ -137,15 +139,17 @@ QueryRawDetail (used on EmpiriCall console)
 
 I know this isn't a lot to go on, but I will try to create more docs on this later.
 
+If you want to write your own RabbitMQ consumer service, I recommend checking out EasyNetQ (see issue #1 for more information).
+
 # License
 
-EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer are all licensed under the MIT License: http://choosealicense.com/licenses/mit/
+EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer, and EmpiriCall.Data.RabbitMQ.* are all licensed under the MIT License: http://choosealicense.com/licenses/mit/
 
 # Stuff that still needs done
 
-* Performance testing / adjustments: maybe batching? maybe async or Mongo/Couch fire&forget?
-* Auth, since EmpiriCall runs in production, access should be restricted
+* Creating GitHub issues for the items listed below.
+* Auth, since EmpiriCall runs in production, console access should be restricted
 * More reports for username, custom values, date/time.
-* Ability to add/edit feature mapping in the UI.
+* Ability to add/edit/export feature mapping in the UI.
 * Better looking console/reports.
 * Move these docs into a wiki, flesh them out a bit more.
