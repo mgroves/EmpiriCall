@@ -24,11 +24,11 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
         protected override void OnStart(string[] args)
         {
             var sqlConnectionString = ConfigurationManager.AppSettings["SqlConnectionString"];
-            var rabbitMqHostName = ConfigurationManager.AppSettings["RabbitMqHostName"];
+			var rabbitMqConnectionString = ConfigurationManager.AppSettings["RabbitMqConnectionString"];
 
             _context = new EmpiriCallDbContext(new SqlConnection(sqlConnectionString));
 
-            using (var bus = RabbitHutch.CreateBus("host=" + rabbitMqHostName))
+            using (var bus = RabbitHutch.CreateBus(rabbitMqConnectionString))
             {
                 bus.Subscribe<QueueMessage>("EmpiriCallQueueMessage", SaveRecordToDatabase);
                 if (_showConsole)

@@ -6,11 +6,11 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
 {
     public class CommandHandlerAddRecord : ICommandHandler<CommandAddRecord>
     {
-        readonly string _rabbitMqHostName;
+        readonly string _rabbitMqConnectionString;
 
-        public CommandHandlerAddRecord(string rabbitMqHostName)
+        public CommandHandlerAddRecord(string rabbitMqConnectionString)
         {
-            _rabbitMqHostName = rabbitMqHostName;
+            _rabbitMqConnectionString = rabbitMqConnectionString;
         }
 
         public void Handle(CommandAddRecord command)
@@ -25,7 +25,7 @@ namespace EmpiriCall.Data.RabbitMQ.CommandHandlers
                 TimeStamp = command.TimeStamp
             };
 
-            var bus = RabbitHutch.CreateBus("host=" + _rabbitMqHostName);
+            var bus = RabbitHutch.CreateBus(_rabbitMqConnectionString);
             bus.Publish(record);
         }
     }
