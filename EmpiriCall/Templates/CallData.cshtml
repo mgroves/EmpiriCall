@@ -16,7 +16,7 @@
         <td># Calls</td>
         <td>Feature</td>
     </tr>
-    @foreach (var detailRecord in Model.MetaData.ActionInfo)
+    @foreach (var detailRecord in Model.MetaData.ActionInfo.OrderByDescending(a => (a.CallRecords == null ? 0 : a.CallRecords.Count)))
     {
         <tr>
             <td>@detailRecord.ControllerName</td>
