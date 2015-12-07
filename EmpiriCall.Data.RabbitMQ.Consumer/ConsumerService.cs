@@ -35,6 +35,7 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
                 {
                     Console.WriteLine("Now listening for messages of type: " + typeof (QueueMessage).FullName);
                     Console.WriteLine("Press ENTER to stop.");
+	                Console.ReadLine();
                 }
             }
 
@@ -53,8 +54,8 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
                     .Where(a => ParameterBasicInfo.AreTheSame(record.ParameterInfo, a.ParameterInfo))
                     .FirstOrDefault();
 
-            if (action == null)
-                return;
+	        if (action == null) 
+				return;
 
             if (action.CallRecords == null)
                 action.CallRecords = new List<DetailRecord>();
@@ -68,9 +69,7 @@ namespace EmpiriCall.Data.RabbitMQ.Consumer
             _context.SaveChanges();
 
             if (_showConsole)
-            {
                 Console.WriteLine("Wrote a message:" + JsonConvert.SerializeObject(record));
-            }
         }
 
         protected override void OnStop()
