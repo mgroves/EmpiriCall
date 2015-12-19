@@ -5,7 +5,7 @@ using ExampleMvcApp.DataLayer;
 
 namespace ExampleMvcApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         readonly MyDbContext _context;
 

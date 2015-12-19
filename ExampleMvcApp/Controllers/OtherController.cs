@@ -6,7 +6,7 @@ using ExampleMvcApp.Models;
 
 namespace ExampleMvcApp.Controllers
 {
-    public class OtherController : Controller
+    public class OtherController : BaseController
     {
         readonly MyDbContext _context;
 
