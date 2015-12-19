@@ -15,23 +15,25 @@
 else
 {
     <p>Meta data last updated: @Model.Meta.LastUpdated</p>
-	<table class="table table-striped table-bordered table-hover">
-		<tr>
-			<td>Controller Name</td>
-			<td>Action Name</td>
-			<td>Parameter types</td>
-			<td>Parameter names</td>
-			<td>Feature</td>
-		</tr>
-		@foreach (var actionInfo in @Model.Meta.ActionInfo.OrderBy(x => x.ControllerName).ThenBy(x => x.ActionName))
-		{
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover report-table">
 			<tr>
-				<td>@actionInfo.ControllerName</td>
-				<td>@actionInfo.ActionName</td>
-				<td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName))</td>
-				<td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterName))</td>
-				<td>@actionInfo.Feature</td>
+				<td>Controller Name</td>
+				<td>Action Name</td>
+				<td>Parameter types</td>
+				<td>Parameter names</td>
+				<td>Feature</td>
 			</tr>
-		}
-	</table>
+			@foreach (var actionInfo in @Model.Meta.ActionInfo.OrderBy(x => x.ControllerName).ThenBy(x => x.ActionName))
+			{
+				<tr>
+					<td>@actionInfo.ControllerName</td>
+					<td>@actionInfo.ActionName</td>
+					<td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName))</td>
+					<td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterName))</td>
+					<td>@actionInfo.Feature</td>
+				</tr>
+			}
+		</table>
+	</div>
 }

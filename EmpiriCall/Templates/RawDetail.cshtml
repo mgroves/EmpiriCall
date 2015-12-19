@@ -7,38 +7,40 @@
 
 <h1>Raw Call Data</h1>
 
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <td>Meta#</td>
-        <td>Controller Name</td>
-        <td>Action Name</td>
-		<td>Parameter Info</td>
-        <td>Time stamp</td>
-	    <td>Username</td>
-        <td>Custom</td>
-    </tr>
-    @foreach (var detailRecord in Model.Details)
-    {
-        <tr>
-            <td>@detailRecord.ActionInfo.MetaData.Version</td>
-            <td>@detailRecord.ActionInfo.ControllerName</td>
-            <td>@detailRecord.ActionInfo.ActionName</td>
-			<td>@string.Join(",", @detailRecord.ActionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName + " " + p.ParameterName))</td>
-            <td>@detailRecord.TimeStamp</td>
-            <td>@detailRecord.UserName</td>
-            <td>
-                @if (detailRecord.CustomValues != null && detailRecord.CustomValues.Any())
-                {
-                    foreach (var custom in @detailRecord.CustomValues)
-                    {
-                        @custom.Value<br />
-                    }
-                }
-                else
-                {
-                    <text>N/A</text>
-                }
-            </td>
-        </tr>
-    }
-</table>
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover report-table">
+		<tr>
+			<td>Meta#</td>
+			<td>Controller Name</td>
+			<td>Action Name</td>
+			<td>Parameter Info</td>
+			<td>Time stamp</td>
+			<td>Username</td>
+			<td>Custom</td>
+		</tr>
+		@foreach (var detailRecord in Model.Details)
+		{
+			<tr>
+				<td>@detailRecord.ActionInfo.MetaData.Version</td>
+				<td>@detailRecord.ActionInfo.ControllerName</td>
+				<td>@detailRecord.ActionInfo.ActionName</td>
+				<td>@string.Join(",", @detailRecord.ActionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName + " " + p.ParameterName))</td>
+				<td>@detailRecord.TimeStamp</td>
+				<td>@detailRecord.UserName</td>
+				<td>
+					@if (detailRecord.CustomValues != null && detailRecord.CustomValues.Any())
+					{
+						foreach (var custom in @detailRecord.CustomValues)
+						{
+							@custom.Value<br />
+						}
+					}
+					else
+					{
+						<text>N/A</text>
+					}
+				</td>
+			</tr>
+		}
+	</table>
+</div>

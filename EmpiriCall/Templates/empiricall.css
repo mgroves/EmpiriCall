@@ -1,1 +1,8 @@
-/* this is where I would put custom CSS if I had any */
+/* custom CSS for empiricall dashboard */
+.report-table {
+	width: 100%;
+	table-layout: fixed;
+}
+.report-table td {
+	word-wrap: break-word;
+}
