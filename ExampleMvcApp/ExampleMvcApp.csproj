@@ -108,6 +108,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="DataLayer\MyDbContext.cs" />

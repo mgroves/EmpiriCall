@@ -33,27 +33,25 @@ If you are using the RabbitMQ provider instead (EmpiriCall.Data.RabbitMQ), then 
 
 # How does the console work?
 
-It's super ugly right now, but it is functional.
+It's ugly right now, but it is functional.
 
-## Raw Detail
+## Admin -> Current Meta Data
 
-This is the raw output of each action that has been called: its controller, action, and parameter type/names, when it was called,
+This will show all the meta data about your controller actions. You can also "Add New Meta Data" here, which will rescan and create a new meta data snapshot.
 
-## Force Meta Update
+On this is also one way you can edit the "feature" tokens for each action. Just enter a string in the 'feature' column and click a 'Save' button. Note that if you add a new meta data snapshot, it will start with a new blank feature option.
 
-This is probably the first thing you should do. It will scan your assemblies to find ALL the controllers, actions, and parameter type/names.
-
-## Show Meta Data
-
-This will show all the meta data that was collected by the Force Meta Update scan.
-
-## Show Call Data
+## Reports -> Show Call Data
 
 This will show all the meta data, and how many times each action has been called. 0 if it's not been called yet.
 
-## Load Feature Maps Into Meta Data
+## Admin -> Load Feature Maps
 
 If you have created a feature mapper and loaded it into EmpiriCall, then this command will actually run that loader.
+
+## Reports -> Raw Detail
+
+This is the raw output of each action that has been called: its controller, action, and parameter type/names, when it was called,
 
 # Feature Maps
 
@@ -148,8 +146,10 @@ EmpiriCall, EmpiriCall.Data, EmpiriCall.Data.SQLServer, and EmpiriCall.Data.Rabb
 # Stuff that still needs done
 
 * Creating GitHub issues for the items listed below.
-* Auth, since EmpiriCall runs in production, console access should be restricted
 * More reports for username, custom values, date/time.
-* Ability to add/edit/export feature mapping in the UI.
-* Better looking console/reports.
+* Ability to import/export feature mapping in the UI.
+* Better console UX.
+* Better report UI/UX.
 * Move these docs into a wiki, flesh them out a bit more.
+* Ability to create custom reports, or at least add reports to EmpiriCall console?
+* Is anything else neeed for Auth? Since EmpiriCall runs in production, console access should be restricted.

@@ -19,6 +19,7 @@ namespace EmpiriCall.Actions
                 case "showmetadata": return new ShowMetaDataAction(razor, processor);
                 case "showcalldata": return new ShowCallDataAction(razor, processor);
                 case "loadfeature": return new LoadFeatureMaps(razor);
+                case "savefeatures": return new SaveFeatures(razor, processor);
                 default:
                     return new ViewOrShowMainMenuAction(commandString, razor, processor);
             }

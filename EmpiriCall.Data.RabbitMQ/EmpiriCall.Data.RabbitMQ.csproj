@@ -90,6 +90,7 @@
     <Compile Include="CommandHandlers\CommandHandlerAddRecord.cs" />
     <Compile Include="CommandHandlers\CommandHandlerCreateMetaDataIfNecessary.cs" />
     <Compile Include="CommandHandlers\CommandHandlerMapFeature.cs" />
+    <Compile Include="CommandHandlers\CommandHandlerUpdateFeatures.cs" />
     <Compile Include="EmpiriCallDbContext.cs" />
     <Compile Include="Entities\ActionInfoMap.cs" />
     <Compile Include="Entities\CustomValueMap.cs" />

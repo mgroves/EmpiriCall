@@ -5,14 +5,37 @@
     ViewBag.Title = "Load Feature Maps";
 }
 
-<h1>Load Feature Maps</h1>
-
 @if (Model.MapFeatureLog == null || !Model.MapFeatureLog.Any())
 {
-    <p>No feature maps loaded.</p>
+    <h1>No feature mappings available.</h1>
+    
+    <h2>To add feature mappings via C#, first create an implementation of IFeatureMapper (example):</h2>
+    
+    <div class="code">
+        <span class="Modifier">public</span>&nbsp;<span class="ReferenceType">class</span>&nbsp;MyFeatureMapper&nbsp;:&nbsp;IFeatureMapper<br />
+        {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="Modifier">public</span>&nbsp;<span class="ValueType">void</span>&nbsp;Map(MapFeature&nbsp;map)<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.Of&lt;HomeController&gt;(x&nbsp;=&gt;&nbsp;x.Index(),&nbsp;<span class="String">"Home&nbsp;Feature"</span>);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.Of&lt;HomeController&gt;(x&nbsp;=&gt;&nbsp;x.Foo(0,&nbsp;<span class="Keyword">null</span>),&nbsp;<span class="String">"Home&nbsp;Feature"</span>);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.Of&lt;OtherController&gt;(x&nbsp;=&gt;&nbsp;x.Bar(<span class="Keyword">null</span>),&nbsp;<span class="String">"Other&nbsp;Feature"</span>);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.Of&lt;OtherController&gt;(x&nbsp;=&gt;&nbsp;x.Baz(<span class="Keyword">null</span>),&nbsp;<span class="String">"Other&nbsp;Feature"</span>);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        }
+    </div>
+
+    <p>Then, load this feature mapping to EmpiriCall (example): <span class="code">EmpiriCallConfig.LoadFeatureMapper(new MyFeatureMapper())</span></p>
+    
+    <p>When you load this page again, EmpiriCall will go through that mapper and enter all the mappings in to meta data.</p>
+    
+    <h2>To add feature mappings via the EmpiriCall Management Console:</h2>
+    
+    <p>TODO</p>
 }
 else
 {
+    <h1>Load Feature Mapping</h1>
+
     <p>These feature maps were loaded:</p>
     
     <div class="table-responsive" style="height: 500px; overflow: auto;">

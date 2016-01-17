@@ -1,4 +1,5 @@
-﻿@model EmpiriCall.Actions.ViewModels.MetaDataView
+﻿@using System.Web.Mvc.Html
+@model EmpiriCall.Actions.ViewModels.MetaDataView
 
 @{
     Layout = "_layout";
@@ -15,25 +16,34 @@
 else
 {
     <p>Meta data last updated: @Model.Meta.LastUpdated</p>
-	<div class="table-responsive">
-		<table class="table table-striped table-bordered table-hover report-table">
-			<tr>
-				<td>Controller Name</td>
-				<td>Action Name</td>
-				<td>Parameter types</td>
-				<td>Parameter names</td>
-				<td>Feature</td>
-			</tr>
-			@foreach (var actionInfo in @Model.Meta.ActionInfo.OrderBy(x => x.ControllerName).ThenBy(x => x.ActionName))
-			{
-				<tr>
-					<td>@actionInfo.ControllerName</td>
-					<td>@actionInfo.ActionName</td>
-					<td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName))</td>
-					<td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterName))</td>
-					<td>@actionInfo.Feature</td>
-				</tr>
-			}
-		</table>
-	</div>
+    <p><a href="?command=addmetaversion">Add New Meta Data</a>: Note that this process will not remove old data,
+    but it will record new data only against the new meta data. You should typically not do this unless you have made changes to your MVC project.</p>
+
+    <form action="?command=savefeatures" method="POST">
+        <button type="submit" class="btn btn-success">Save</button>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover report-table">
+                <tr>
+                    <td>Controller Name</td>
+                    <td>Action Name</td>
+                    <td>Parameter types</td>
+                    <td>Parameter names</td>
+                    <td>Feature</td>
+                </tr>
+                @foreach (var actionInfo in @Model.Meta.ActionInfo.OrderBy(x => x.ControllerName).ThenBy(x => x.ActionName))
+                {
+                    <tr>
+                        <td>@actionInfo.ControllerName</td>
+                        <td>@actionInfo.ActionName</td>
+                        <td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterTypeFullName))</td>
+                        <td>@string.Join(",", @actionInfo.ParameterInfo.Select(p => p.ParameterName))</td>
+                        <td>
+                            <input type="text" name="@("Feature" + @actionInfo.Id)" value="@actionInfo.Feature" placeholder="Enter Feature Name" />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
 }

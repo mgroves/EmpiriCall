@@ -17,13 +17,23 @@
                     <a class="navbar-brand" href="/EmpiriCall.axd">EmpiriCall</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
+                    <!-- break up into empiricall admin, empiricall reports -->
                     <ul class="nav navbar-nav">
-                        <li @IsSelected("")><a href="/EmpiriCall.axd">Home</a></li>
-                        <li @IsSelected("rawdetail")><a href="?command=rawdetail">Raw Detail</a></li>
-                        <li @IsSelected("addmetaversion")><a href="?command=addmetaversion">Add New Meta</a></li>
-                        <li @IsSelected("showmetadata")><a href="?command=showmetadata">Current Meta Data</a></li>
-                        <li @IsSelected("showcalldata")><a href="?command=showcalldata">Show Call Data</a></li>
-                        <li @IsSelected("loadfeature")><a href="?command=loadfeature">Load Feature Maps</a></li>
+                        <li @IsSelected("")><a href="/EmpiriCall.axd">Dashboard</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li @IsSelected("showmetadata")><a href="?command=showmetadata">Current Meta Data</a></li>
+                                <li @IsSelected("loadfeature")><a href="?command=loadfeature">Load Feature Maps</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Reports <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li @IsSelected("rawdetail")><a href="?command=rawdetail">Raw Detail</a></li>
+                                <li @IsSelected("showcalldata")><a href="?command=showcalldata">Show Call Data</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

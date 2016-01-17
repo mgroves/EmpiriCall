@@ -36,6 +36,8 @@ namespace EmpiriCall.Data.SQLServer
                 return new CommandHandlerMapFeature(_context);
             else if (serviceType == typeof(ICommandHandler<CommandCreateMetaDataIfNecessary>))
                 return new CommandHandlerCreateMetaDataIfNecessary(_context);
+            else if (serviceType == typeof(ICommandHandler<CommandUpdateFeatures>))
+                return new CommandHandlerUpdateFeatures(_context);
             else
                 throw new Exception("I can't find a QueryHandler that returns: " + serviceType.FullName);
         }

@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\AddMetaDataVersionDone.cs" />
+    <Compile Include="Actions\SaveFeatures.cs" />
     <Compile Include="Actions\ViewModels\LoadFeatureMapViewModel.cs" />
     <Compile Include="Actions\ViewOrShowMainMenuAction.cs" />
     <Compile Include="AnalyticEngineConfig.cs" />
@@ -110,6 +111,7 @@
     <EmbeddedResource Include="Templates\_layout.cshtml" />
     <EmbeddedResource Include="Templates\LoadFeatureMaps.cshtml" />
     <EmbeddedResource Include="Templates\AddMetaVersionDone.cshtml" />
+    <EmbeddedResource Include="Templates\SaveFeatures.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmpiriCall.Data\EmpiriCall.Data.csproj">
